@@ -1,0 +1,1980 @@
+/*
+.logo.background_image {
+	max-width: 100%;
+	max-height: 100%;
+    height: auto;
+    width: auto;
+}
+
+.logo.UNUM_Image {
+	position: absolute;
+	top: 20%;
+	width: 10%;
+	height: width;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo.gotoLoginButton {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	width: 15%;
+	height: 40px;
+	transform: translate(-50%, -50%);
+}
+
+.logo.backArrow {
+	position: absolute;
+	top: 100px;
+	left: 15%;
+}
+
+.logo.home {
+	position: absolute;
+	color: white;
+	top: 98px;
+	left: 18%;
+	text-decoration: none !important;
+}
+
+.logo.login.forlogin {
+	position: absolute;
+	color: white;
+	top: 330px;
+	left: 40%;
+	text-decoration: none !important;
+}
+
+.logo.signup.forlogin {
+	position: absolute;
+	color: gray;
+	top: 330px;
+	left: 53%;
+	text-decoration: none !important;
+}
+
+.logo.login.forsignup {
+	position: absolute;
+	color: gray;
+	top: 330px;
+	left: 40%;
+	text-decoration: none !important;
+}
+
+.logo.signup.forsignup {
+	position: absolute;
+	color: white;
+	top: 330px;
+	left: 53%;
+	text-decoration: none !important;
+}
+
+.logo.label1 {
+	position: absolute;
+	top: 380px;
+	left: 35%;
+}
+
+.logo.inputmail {
+	position: absolute;
+	top: 378px;
+	left: 40%;
+	width: 220px;
+}
+
+.logo.label2 {
+	position: absolute;
+	top: 420px;
+	left: 33%;
+}
+
+.logo.inputpassword {
+	position: absolute;
+	top: 418px;
+	left: 40%;
+	width: 220px;
+}
+
+.logo.LogInButton {
+	position: absolute;
+	top: 460px;
+	left: 45%;
+	width: 100px;
+	background-color: orange;
+	border-style: none;
+}
+
+.logo.confirm {
+	position: absolute;
+	top: 460px;
+	left: 33%;
+}
+
+.logo.confirm.inputpassword {
+	position: absolute;
+	top: 458px;
+	left: 40%;
+	width: 220px;
+}
+
+.logo.SignupButton {
+	position: absolute;
+	top: 500px;
+	left: 45%;
+	width: 100px;
+	background-color: orange;
+	border-style: none;
+}
+
+.firstpage.topbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	background-color: white;
+}
+
+.firstpage.mainbar {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+	height: 90%;
+	background-color: lightgray;
+}
+
+.firstpage.UNUM_Image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+}
+
+.firstpage.line_Image {
+	position: absolute;
+	top: 5px;
+	left: 51px;
+	width: 1px;
+	height: 40px;
+}
+
+.firstpage.dropdownmenu {
+	position: absolute;
+	top: 5px;
+	left: 60px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;
+}
+
+.firstpage.downarrow_Image {
+	position: absolute;
+	top: 18px;
+	right: -10px;
+}
+
+.firstpage.supportbutton {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	width: 100px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.settingbutton {
+	position: absolute;
+	top: 5px;
+	right: 120px;
+	width: 100px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.gridview {
+	position: absolute;
+	top: 50px;
+	left: 10px;
+	width: 30%;
+	height: 90%;
+	background-color: gray;
+}
+
+*/
+
+
+
+.logo.background_image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1200px;
+	height: 800px;
+}
+
+.logo.UNUM_Image {
+	position: absolute;
+	top: 150px;
+	width: 120px;
+	height: width;
+    left: 540px;
+}
+
+.logo.gotoLoginButton {
+	position: absolute;
+	top: 600px;
+	left: 480px;
+	width: 240px;
+	height: 40px;
+}
+
+.logo.backArrow {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+
+.logo.home {
+	position: absolute;
+	color: white;
+	top: 50px;
+	left: 70px;
+	text-decoration: none !important;
+}
+
+.logo.login.forlogin {
+	position: absolute;
+	color: white;
+	top: 330px;
+	left: 500px;
+	text-decoration: none !important;
+}
+
+.logo.signup.forlogin {
+	position: absolute;
+	color: gray;
+	top: 330px;
+	left: 640px;
+	text-decoration: none !important;
+}
+
+.logo.login.forsignup {
+	position: absolute;
+	color: gray;
+	top: 330px;
+	left: 500px;
+	text-decoration: none !important;
+}
+
+.logo.signup.forsignup {
+	position: absolute;
+	color: white;
+	top: 330px;
+	left: 640px;
+	text-decoration: none !important;
+}
+
+.logo.label1 {
+	position: absolute;
+	top: 380px;
+	left: 460px;
+	color: white;
+}
+
+.logo.inputmail {
+	position: absolute;
+	top: 380px;
+	left: 520px;
+	width: 220px;
+}
+
+.logo.label2 {
+	position: absolute;
+	top: 420px;
+	left: 437px;
+	color: white;
+}
+
+.logo.inputpassword {
+	position: absolute;
+	top: 420px;
+	left: 520px;
+	width: 220px;
+}
+
+.logo.LogInButton {
+	position: absolute;
+	top: 480px;
+	left: 540px;
+	width: 125px;
+	height: 25px;
+	background-color: orange;
+	border-style: none;
+}
+
+.logo.confirm {
+	position: absolute;
+	top: 460px;
+	left: 444px;
+	color: white;
+}
+
+.logo.confirm.inputpassword {
+	position: absolute;
+	top: 460px;
+	left: 520px;
+	width: 220px;
+}
+
+.logo.SignupButton {
+	position: absolute;
+	top: 520px;
+	left: 540px;
+	width: 125px;
+	height: 25px;
+	background-color: orange;
+	border-style: none;
+}
+
+.firstpage.topbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1200px;
+	height: 50px;
+	background-color: white;
+}
+
+.firstpage.mainbar {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 1200px;
+	height: 750px;
+	background-color: lightgray;
+}
+
+.firstpage.UNUM_Image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+}
+
+.firstpage.line_Image {
+	position: absolute;
+	top: 5px;
+	left: 51px;
+	width: 1px;
+	height: 40px;
+}
+
+.firstpage.dropdownmenu {
+	position: absolute;
+	top: 5px;
+	left: 60px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;
+}
+
+.firstpage.downarrow_Image {
+	position: absolute;
+	top: 18px;
+	right: -10px;
+}
+
+.firstpage.supportbutton {
+	position: absolute;
+	top: 5px;
+	left: 1120px;
+	width: 70px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.settingbutton {
+	position: absolute;
+	top: 5px;
+	left: 1040px;
+	width: 70px;
+	height: 40px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.gridview {
+	position: absolute;
+	top: 65px;
+	left: 20px;
+	width: 366px;
+	height: 730px;
+	background-color: lightgray;
+}
+
+.firstpage.grid1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid2 {
+	position: absolute;
+	top: 0;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid3 {
+	position: absolute;
+	top: 0;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+
+.firstpage.grid4 {
+	position: absolute;
+	top: 122px;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid5 {
+	position: absolute;
+	top: 122px;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid6 {
+	position: absolute;
+	top: 122px;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+
+.firstpage.grid7 {
+	position: absolute;
+	top: 244px;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid8 {
+	position: absolute;
+	top: 244px;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid9 {
+	position: absolute;
+	top: 244px;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+
+.firstpage.grid10 {
+	position: absolute;
+	top: 366px;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid11 {
+	position: absolute;
+	top: 366px;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid12 {
+	position: absolute;
+	top: 366px;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+
+.firstpage.grid13 {
+	position: absolute;
+	top: 488px;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid14 {
+	position: absolute;
+	top: 488px;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid15 {
+	position: absolute;
+	top: 488px;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+
+.firstpage.grid16 {
+	position: absolute;
+	top: 610px;
+	left: 0;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid17 {
+	position: absolute;
+	top: 610px;
+	left: 122px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.grid18 {
+	position: absolute;
+	top: 610px;
+	left: 244px;
+	width: 120px;
+	height: 120px;
+	background-color: gray;
+}
+
+.firstpage.toolbar_rect {
+	position: absolute;
+	top: 80px;
+	left: 400px;
+	width: 430px;
+	height: 60px;
+}
+/*//////////////////////////////////////////////////////////////////////////////////*/
+.firstpage.toolbar.addbutton {
+	position: absolute;
+	top: 95px;
+	left: 440px;
+	width: 25px;
+	height: 25px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.addimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.firstpage.toolbar.trashbutton {
+	position: absolute;
+	top: 95px;
+	left: 500px;
+	width: 25px;
+	height: 25px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.trashimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.firstpage.toolbar.swapbutton {
+	position: absolute;
+	top: 95px;
+	left: 560px;
+	width: 25px;
+	height: 25px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.swapimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.firstpage.toolbar.captionbutton {
+	position: absolute;
+	top: 95px;
+	left: 620px;
+	width: 25px;
+	height: 25px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.captionimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.firstpage.toolbar.schedulebutton {
+	position: absolute;
+	top: 95px;
+	left: 680px;
+	width: 21px;
+	height: 22px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.scheduleimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 21px;
+	height: 22px;
+}
+
+.firstpage.toolbar.analyticsbutton {
+	position: absolute;
+	top: 100px;
+	left: 740px;
+	width: 25px;
+	height: 13px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.toolbar.analyticsimage {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 13px;
+}
+/*//////////////////////////////////////////////////////////////////////////////////*/
+.firstpage.tipbar_rect {
+	position: absolute;
+	top: 80px;
+	left: 1000px;
+	width: 200px;
+	height: 60px;
+}
+
+#settingView {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1200px;
+	height: 800px;
+	background-color: black;
+}
+
+#settingContent {
+	position: absolute;
+	top: 150px;
+	left: 420px;
+	width: 350px;
+	height: 500px;
+	background-color: white;
+}
+
+#settingContentForAccount {
+	position: absolute;
+	top: 150px;
+	left: 420px;
+	width: 350px;
+	height: 500px;
+	background-color: white;
+}
+
+#settinglabel {
+	position: absolute;
+	top: 20px;
+	left: 140px;
+	width: 80px;
+	height: 30px;
+	color: gray;
+}
+
+.firstpage.setting.closebutton {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	width: 30px;
+	height: 30px;
+}
+
+.firstpage.setting.appearancebutton {
+	position: absolute;
+	top: 60px;
+	left: 10px;
+	width: 155px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	color: black;
+	background-color: white;	
+}
+
+.firstpage.setting.accountbutton {
+	position: absolute;
+	top: 60px;
+	left: 185px;
+	width: 155px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	color: lightgray;
+	background-color: white;	
+}
+
+.firstpage.setting.appearancebuttonForAccount {
+	position: absolute;
+	top: 60px;
+	left: 10px;
+	width: 155px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	color: lightgray;
+	background-color: white;	
+}
+
+.firstpage.setting.accountbuttonForAccount {
+	position: absolute;
+	top: 60px;
+	left: 185px;
+	width: 155px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	color: black;
+	background-color: white;	
+}
+
+.firstpage.setting.closebuttonForAccount {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	width: 30px;
+	height: 30px;
+}
+
+.firstpage.setting.appearancebar.forappearance {
+	position: absolute;
+	top: 90px;
+	left: 0px;
+	width: 175px;
+	height: 2px;
+}
+
+.firstpage.setting.accountbar.forappearance {
+	position: absolute;
+	top: 90px;
+	left: 175px;
+	width: 175px;
+	height: 2px;
+}
+
+.lightmode {
+	position: absolute;
+	top: 120px;
+	left: 20px;
+	width: 120px;
+	height: 30px;
+	font-size: 15px;
+	color: gray;
+}
+
+.accentcolor {
+	position: absolute;
+	top: 160px;
+	left: 20px;
+	width: 120px;
+	height: 30px;
+	font-size: 15px;
+	color: gray;
+}
+
+.firstpage.setting.changemodebutton {
+	position: absolute;
+	top: 120px;
+	left: 158px;
+	width: 30px;
+	height: 18px;
+	border-style: none;
+	color: black;
+	background-color: white;	
+}
+
+.firstpage.setting.changemode_Image {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 30px;
+	height: 18px;
+}
+
+.darkmode {
+	position: absolute;
+	top: 120px;
+	left: 230px;
+	width: 120px;
+	height: 30px;
+	font-size: 15px;
+	color: gray;
+}
+
+.firstpage.setting.appearancebar.foraccount {
+	position: absolute;
+	top: 90px;
+	left: 0px;
+	width: 175px;
+	height: 2px;
+}
+
+.firstpage.setting.accountbar.foraccount {
+	position: absolute;
+	top: 90px;
+	left: 175px;
+	width: 175px;
+	height: 2px;
+}
+
+.firstpage.setting.updatemaillabel {
+	position: absolute;
+	top: 120px;
+	left: 20px;
+	width: 120px;
+	height: 30px;
+	font-size: 12px;
+	color: gray;
+}
+
+.firstpage.setting.updatemailinput {
+	position: absolute;
+	top: 140px;
+	left: 20px;
+	width: 160px;
+	height: 15px;
+}
+
+.firstpage.setting.updatemailbutton {
+	position: absolute;
+	top: 140px;
+	left: 250px;
+	width: 80px;
+	height: 20px;
+}
+
+.firstpage.setting.updatepasswordlabel {
+	position: absolute;
+	top: 180px;
+	left: 20px;
+	width: 120px;
+	height: 30px;
+	font-size: 12px;
+	color: gray;
+}
+
+.firstpage.setting.updatpasswordinput {
+	position: absolute;
+	top: 200px;
+	left: 20px;
+	width: 160px;
+	height: 15px;
+}
+
+.firstpage.setting.updatepassbutton {
+	position: absolute;
+	top: 200px;
+	left: 250px;
+	width: 80px;
+	height: 20px;
+}
+
+.firstpage.setting.updatepaymentlabel {
+	position: absolute;
+	top: 265px;
+	left: 20px;
+	width: 120px;
+	height: 30px;
+	font-size: 12px;
+	color: gray;
+}
+
+.firstpage.setting.updatepaymentbutton {
+	position: absolute;
+	top: 260px;
+	left: 250px;
+	width: 80px;
+	height: 20px;
+}
+
+#expandBackView {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1200px;
+	height: 800px;
+	background-color: black;
+}
+
+#expandContent {
+	position: absolute;
+	top: 200px;
+	left: 400px;
+	width: 400px;
+	height: 400px;
+	background-color: white;
+}
+
+#nextImage {
+	position: absolute;
+	top: 400px;
+	left: 350px;
+	width: 20px;
+	height: 34px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+#prevImage {
+	position: absolute;
+	top: 400px;
+	left: 830px;
+	width: 20px;
+	height: 34px;
+	border-width: 0;
+	border-style: none;
+	background-color: transparent;	
+}
+
+.firstpage.expand.prev_Image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 34px;
+}
+
+.firstpage.expand.next_Image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 34px;
+}
+
+.firstpage.templateimage1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage3 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage4 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage5 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage6 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage7 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage8 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage9 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage10 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage11 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage12 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage13 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage14 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage15 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage16 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage17 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+.firstpage.templateimage18 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120px;
+	height: 120px;
+}
+
+.firstpage.template_expand_image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 400px;
+}
+
+#captionBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1200px;
+	height: 800px;
+	background-color: black;
+}
+
+#captionContent {
+	position: absolute;
+	top: 100px;
+	left: 370px;
+	width: 460px;
+	height: 600px;
+	background-color: white;
+}
+
+.firstpage.caption.closebutton {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 20px;
+	height: 20px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.caption.close_Image {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 20px;
+	height: 20px;
+}
+
+.firstpage.caption.image {
+	position: absolute;
+	top: 80px;
+	left: 70px;
+	width: 320px;
+	height: 320px;
+}
+
+.firstpage.caption.titlelabel {
+	position: absolute;
+	top: 20px;
+	left: 180px;
+	width: 120px;
+	height: 30px;
+	color: gray;
+}
+
+.firstpage.caption.comment {
+	position: absolute;
+	top: 420px;
+	left: 70px;
+	width: 315px;
+	height: 90px;
+	border-color: orange;
+}
+
+.firstpage.caption.savebutton {
+	position: absolute;
+	top: 540px;
+	left: 330px;
+	width: 70px;
+	height: 30px;
+	color: white;
+	border-width: 0;
+	border-style: none;
+	background-color: orange;
+}
+
+/*      ----------     */
+.firstpage.schedule_card {
+	position: absolute;
+	top: 160px;
+	left: 400px;
+	width: 700px;
+	height: 600px;
+}
+
+.firstpage.schedule_card_top {
+	position: absolute;
+	top: 164px;
+	left: 402px;
+	width: 696px;
+	height: 100px;
+}
+
+.firstpage.firstpage_schedule_card_title_image {
+	position: absolute;
+	top: 190px;
+	left: 680px;
+	width: 16px;
+	height: 18px;
+}
+
+.firstpage.schedule_title {
+	position: absolute;
+	top: 190px;
+	left: 710px;
+	width: 100px;
+	height: 20px;
+	color: gray;
+}
+
+.firstpage.schedule.remindarbutton {
+	position: absolute;
+	top: 230px;
+	left: 404px;
+	width: 230px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.schedule.custompostbutton {
+	position: absolute;
+	top: 230px;
+	left: 634px;
+	width: 232px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+.firstpage.schedule.calendarbutton {
+	position: absolute;
+	top: 230px;
+	left: 866px;
+	width: 230px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: white;	
+}
+
+#remindar_content {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 500px;
+	background-color: white;
+}
+
+.firstpage.schedule.reminder.editreminder_title {
+	position: absolute;
+	top: 30px;
+	left: 280px;
+	width: 200px;
+	height: 20px;	
+}
+
+.dropdownHour {
+	position: absolute;
+	top: 100px;
+	left: 150px;
+	width: 100px;
+	height: 30px;	
+	background-color: none;
+}
+
+.dropdownMin {
+	position: absolute;
+	top: 100px;
+	left: 300px;
+	width: 100px;
+	height: 30px;	
+	background-color: none;
+}
+
+.dropdownAMPM {
+	position: absolute;
+	top: 100px;
+	left: 450px;
+	width: 100px;
+	height: 30px;	
+	background-color: none;
+}
+
+.firstpage.schedule.reminder.repeat_title {
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	width: 100px;
+	height: 30px;	
+}
+
+#repeatdaybutton1 {
+	position: absolute;
+	top: 250px;
+	left: 150px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton2 {
+	position: absolute;
+	top: 250px;
+	left: 210px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton3 {
+	position: absolute;
+	top: 250px;
+	left: 270px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton4 {
+	position: absolute;
+	top: 250px;
+	left: 330px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton5 {
+	position: absolute;
+	top: 250px;
+	left: 390px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton6 {
+	position: absolute;
+	top: 250px;
+	left: 450px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton7 {
+	position: absolute;
+	top: 250px;
+	left: 510px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+.firstpage.schedule.reminder.update {
+	position: absolute;
+	top: 400px;
+	left: 550px;
+	width: 80px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: orange;
+}
+
+#custompost_content {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 500px;
+	background-color: white;
+}
+
+#calendar_content {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 500px;
+	background-color: white;
+}
+
+.firstpage.schedule.underbuttonbar {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 2px;
+}
+
+.firstpage.schedule.underbuttonbar_reminder {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 230px;
+	height: 2px;
+}
+
+.firstpage.schedule.underbuttonbar_custom {
+	position: absolute;
+	top: 0px;
+	left: 228px;
+	width: 234px;
+	height: 2px;
+}
+
+.firstpage.schedule.underbuttonbar_calendar {
+	position: absolute;
+	top: 0px;
+	left: 458px;
+	width: 235px;
+	height: 2px;
+}
+
+#calendarcalendar {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	width: 300px;
+	height: 300px;
+	/*background-color: green;*/
+}
+
+#nextmonthbutton {
+	position: absolute;
+	top: 20px;
+	left: 30px;
+	width: 60px;
+	height: 20px;
+}
+
+#datetitle {
+	position: absolute;
+	top: 24px;
+	left: 310px;
+	width: 200px;
+	height: 20px;
+}
+
+#prevmonthbutton {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	width: 60px;
+	height: 20px;
+}
+
+.calendar.row.weekday1 {
+	position: absolute;
+	top: 60px;
+	left: 70px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday2 {
+	position: absolute;
+	top: 60px;
+	left: 160px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday3 {
+	position: absolute;
+	top: 60px;
+	left: 250px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday4 {
+	position: absolute;
+	top: 60px;
+	left: 340px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday5 {
+	position: absolute;
+	top: 60px;
+	left: 430px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday6 {
+	position: absolute;
+	top: 60px;
+	left: 520px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.row.weekday7 {
+	position: absolute;
+	top: 60px;
+	left: 610px;
+	width: 20px;
+	height: 20px;
+	color: gray;
+}
+
+.calendar.heightline1 {
+	position: absolute;
+	top: 80px;
+	left: 120px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.heightline2 {
+	position: absolute;
+	top: 80px;
+	left: 210px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.heightline3 {
+	position: absolute;
+	top: 80px;
+	left: 300px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.heightline4 {
+	position: absolute;
+	top: 80px;
+	left: 390px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.heightline5 {
+	position: absolute;
+	top: 80px;
+	left: 480px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.heightline6 {
+	position: absolute;
+	top: 80px;
+	left: 570px;
+	width: 1px;
+	height: 400px;
+}
+
+.calendar.lengthline1 {
+	position: absolute;
+	top: 140px;
+	left: 30px;
+	width: 630px;
+	height: 1px;
+}
+
+.calendar.lengthline2 {
+	position: absolute;
+	top: 210px;
+	left: 30px;
+	width: 630px;
+	height: 1px;
+}
+
+.calendar.lengthline3 {
+	position: absolute;
+	top: 280px;
+	left: 30px;
+	width: 630px;
+	height: 1px;
+}
+
+.calendar.lengthline4 {
+	position: absolute;
+	top: 350px;
+	left: 30px;
+	width: 630px;
+	height: 1px;
+}
+
+.calendar.lengthline5 {
+	position: absolute;
+	top: 420px;
+	left: 30px;
+	width: 630px;
+	height: 1px;
+}
+
+#date1 {
+	position: absolute;
+	top: 85px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date2 {
+	position: absolute;
+	top: 85px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date3 {
+	position: absolute;
+	top: 85px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date4 {
+	position: absolute;
+	top: 85px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date5 {
+	position: absolute;
+	top: 85px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date6 {
+	position: absolute;
+	top: 85px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date7 {
+	position: absolute;
+	top: 85px;
+	left: 580px;
+	font-size: 12px;
+}
+
+#date8 {
+	position: absolute;
+	top: 150px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date9 {
+	position: absolute;
+	top: 150px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date10 {
+	position: absolute;
+	top: 150px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date11 {
+	position: absolute;
+	top: 150px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date12 {
+	position: absolute;
+	top: 150px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date13 {
+	position: absolute;
+	top: 150px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date14 {
+	position: absolute;
+	top: 150px;
+	left: 580px;
+	font-size: 12px;
+}
+
+#date15 {
+	position: absolute;
+	top: 220px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date16 {
+	position: absolute;
+	top: 220px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date17 {
+	position: absolute;
+	top: 220px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date18 {
+	position: absolute;
+	top: 220px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date19 {
+	position: absolute;
+	top: 220px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date20 {
+	position: absolute;
+	top: 220px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date21 {
+	position: absolute;
+	top: 220px;
+	left: 580px;
+	font-size: 12px;
+}
+
+#date22 {
+	position: absolute;
+	top: 290px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date23 {
+	position: absolute;
+	top: 290px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date24 {
+	position: absolute;
+	top: 290px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date25 {
+	position: absolute;
+	top: 290px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date26 {
+	position: absolute;
+	top: 290px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date27 {
+	position: absolute;
+	top: 290px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date28 {
+	position: absolute;
+	top: 290px;
+	left: 580px;
+	font-size: 12px;
+}
+
+#date29 {
+	position: absolute;
+	top: 360px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date30 {
+	position: absolute;
+	top: 360px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date31 {
+	position: absolute;
+	top: 360px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date32 {
+	position: absolute;
+	top: 360px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date33 {
+	position: absolute;
+	top: 360px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date34 {
+	position: absolute;
+	top: 360px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date35 {
+	position: absolute;
+	top: 360px;
+	left: 580px;
+	font-size: 12px;
+}
+
+#date36 {
+	position: absolute;
+	top: 430px;
+	left: 40px;
+	font-size: 12px;
+}
+
+#date37 {
+	position: absolute;
+	top: 430px;
+	left: 130px;
+	font-size: 12px;
+}
+
+#date38 {
+	position: absolute;
+	top: 430px;
+	left: 220px;
+	font-size: 12px;
+}
+
+#date39 {
+	position: absolute;
+	top: 430px;
+	left: 310px;
+	font-size: 12px;
+}
+
+#date40 {
+	position: absolute;
+	top: 430px;
+	left: 400px;
+	font-size: 12px;
+}
+
+#date41 {
+	position: absolute;
+	top: 430px;
+	left: 490px;
+	font-size: 12px;
+}
+
+#date42 {
+	position: absolute;
+	top: 430px;
+	left: 580px;
+	font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

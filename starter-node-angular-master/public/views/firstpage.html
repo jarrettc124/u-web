@@ -1,0 +1,288 @@
+<div class="jumbotron text-center">
+	<div class="firstpage topbar"></div>
+	<div class="firstpage mainbar"></div>
+ 	<img ng-src="{{firstpage_unum_image_src}}" class="firstpage UNUM_Image"/>
+ 	<img ng-src="{{lineSrc}}" class="firstpage line_Image"/>
+ 	<button ng-click="dropDown()" class="firstpage dropdownmenu"> @Drop Down <img ng-src="{{downArrowSrc}}" class="firstpage downarrow_Image"> </button>
+ 	<button ng-click="support()" class="firstpage supportbutton"> SUPPORT </button>
+ 	<button ng-click="setting()" class="firstpage settingbutton"> SETTINGS </button>
+ 	<div class="firstpage gridview"> 
+ 		<div class="firstpage grid1" id="grid1" ng-click="onGrid1()" ng-dblclick="onGrid1Dbl()">
+ 			<img ng-src="{{firstpage_templateimage1_src}}" class="firstpage templateimage1"/>
+ 		</div>
+ 		<div class="firstpage grid2" id="grid2" ng-click="onGrid2()" ng-dblclick="onGrid2Dbl()">
+ 			<img ng-src="{{firstpage_templateimage2_src}}" class="firstpage templateimage2"/>
+ 		</div>
+ 		<div class="firstpage grid3" id="grid3" ng-click="onGrid3()" ng-dblclick="onGrid3Dbl()">
+ 			<img ng-src="{{firstpage_templateimage3_src}}" class="firstpage templateimage3"/>
+ 		</div>
+ 		<div class="firstpage grid4" id="grid4" ng-click="onGrid4()" ng-dblclick="onGrid4Dbl()">
+ 			<img ng-src="{{firstpage_templateimage4_src}}" class="firstpage templateimage4"/>
+ 		</div>
+ 		<div class="firstpage grid5" id="grid5" ng-click="onGrid5()" ng-dblclick="onGrid5Dbl()">
+ 			<img ng-src="{{firstpage_templateimage5_src}}" class="firstpage templateimage5"/>
+ 		</div>
+ 		<div class="firstpage grid6" id="grid6" ng-click="onGrid6()" ng-dblclick="onGrid6Dbl()">
+ 			<img ng-src="{{firstpage_templateimage6_src}}" class="firstpage templateimage6"/>
+ 		</div>
+ 		<div class="firstpage grid7" id="grid7" ng-click="onGrid7()" ng-dblclick="onGrid7Dbl()">
+ 			<img ng-src="{{firstpage_templateimage7_src}}" class="firstpage templateimage7"/>
+ 		</div>
+ 		<div class="firstpage grid8" id="grid8" ng-click="onGrid8()" ng-dblclick="onGrid8Dbl()">
+ 			<img ng-src="{{firstpage_templateimage8_src}}" class="firstpage templateimage8"/>
+ 		</div>
+ 		<div class="firstpage grid9" id="grid9" ng-click="onGrid9()" ng-dblclick="onGrid9Dbl()">
+ 			<img ng-src="{{firstpage_templateimage9_src}}" class="firstpage templateimage9"/>
+ 		</div>
+ 		<div class="firstpage grid10" id="grid10" ng-click="onGrid10()" ng-dblclick="onGrid10Dbl()">
+ 			<img ng-src="{{firstpage_templateimage10_src}}" class="firstpage templateimage10"/>
+ 		</div>
+ 		<div class="firstpage grid11" id="grid11" ng-click="onGrid11()" ng-dblclick="onGrid11Dbl()">
+ 			<img ng-src="{{firstpage_templateimage11_src}}" class="firstpage templateimage11"/>
+ 		</div>
+ 		<div class="firstpage grid12" id="grid12" ng-click="onGrid12()" ng-dblclick="onGrid12Dbl()">
+ 			<img ng-src="{{firstpage_templateimage12_src}}" class="firstpage templateimage12"/>
+ 		</div>
+ 		<div class="firstpage grid13" id="grid13" ng-click="onGrid13()" ng-dblclick="onGrid13Dbl()">
+ 			<img ng-src="{{firstpage_templateimage13_src}}" class="firstpage templateimage13"/>
+ 		</div>
+ 		<div class="firstpage grid14" id="grid14" ng-click="onGrid14()" ng-dblclick="onGrid14Dbl()">
+ 			<img ng-src="{{firstpage_templateimage14_src}}" class="firstpage templateimage14"/>
+ 		</div>
+ 		<div class="firstpage grid15" id="grid15" ng-click="onGrid15()" ng-dblclick="onGrid15Dbl()">
+ 			<img ng-src="{{firstpage_templateimage15_src}}" class="firstpage templateimage15"/>
+ 		</div>
+ 		<div class="firstpage grid16" id="grid16" ng-click="onGrid16()" ng-dblclick="onGrid16Dbl()">
+ 			<img ng-src="{{firstpage_templateimage16_src}}" class="firstpage templateimage16"/>
+ 		</div>
+ 		<div class="firstpage grid17" id="grid17" ng-click="onGrid17()" ng-dblclick="onGrid17Dbl()">
+ 			<img ng-src="{{firstpage_templateimage17_src}}" class="firstpage templateimage17"/>
+ 		</div>
+ 		<div class="firstpage grid18" id="grid18" ng-click="onGrid18()" ng-dblclick="onGrid18Dbl()">
+ 			<img ng-src="{{firstpage_templateimage18_src}}" class="firstpage templateimage18"/>
+ 		</div>
+ 	</div>
+ 	<img ng-src="{{firstpage_toolbar_rect_src}}" class="firstpage toolbar_rect"/>
+
+
+	<!-- SCHEDULE -->
+ 	<img ng-src="{{firstpage_schedule_card_src}}" class="firstpage schedule_card"/>
+
+ 	<img ng-src="{{firstpage_schedule_card_top_src}}" class="firstpage schedule_card_top">
+ 	</img>
+ 	<img ng-src="{{firstpage_schedule_card_title_image_src}}" class="firstpage firstpage_schedule_card_title_image">
+ 	</img> 	
+	<label class="firstpage schedule_title">
+		SCHEDULE
+	</label>
+	<button ng-click="onReminder()" class="firstpage schedule remindarbutton"> REMINDERS </button>
+	<button ng-click="onCustomPost()" class="firstpage schedule custompostbutton"> CUSTOM POST </button>
+	<button ng-click="onCalendar()" class="firstpage schedule calendarbutton"> CALENDAR </button>
+	<div id="remindar_content">
+		<img ng-src="{{firstpage_underbuttonbar_reminder_src}}" class="firstpage schedule underbuttonbar_reminder"/>
+		<label class="firstpage schedule reminder editreminder_title"> EDIT REMINDER </label>
+
+		<label class="firstpage schedule reminder repeat_title"> REPEAT </label>
+		<button class="firstpage schedule reminder repeat day1" id="repeatdaybutton1" ng-click="onSun()"> SUN </button>
+		<button class="firstpage schedule reminder repeat day2" id="repeatdaybutton2" ng-click="onMon()"> MON </button>
+		<button class="firstpage schedule reminder repeat day3" id="repeatdaybutton3" ng-click="onTue()"> TUE </button>
+		<button class="firstpage schedule reminder repeat day4" id="repeatdaybutton4" ng-click="onWed()"> WED </button>
+		<button class="firstpage schedule reminder repeat day5" id="repeatdaybutton5" ng-click="onTur()"> THU </button>
+		<button class="firstpage schedule reminder repeat day6" id="repeatdaybutton6" ng-click="onFri()"> FRI </button>
+		<button class="firstpage schedule reminder repeat day7" id="repeatdaybutton7" ng-click="onSat()"> SAT </button>
+		<button class="firstpage schedule reminder update"> UPDATE </button>
+
+		<div class="dropdownHour">
+			<select ng-model="makeHour.selected" ng-options="makeHour.value as makeHour.text for makeHour in makeHours" ng-change="selectedHour(makeHour.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+		<div class="dropdownMin">
+			<select ng-model="makeMin.selected" ng-options="makeMin.value as makeMin.text for makeMin in makeMins" ng-change="selectedMin(makeMin.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+		<div class="dropdownAMPM">
+			<select ng-model="makeAMPM.selected" ng-options="makeAMPM.value as makeAMPM.text for makeAMPM in makeAMPMs" ng-change="selectedAMPM(makeAMPM.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+	</div>
+	<div id="custompost_content">
+		<img ng-src="{{firstpage_underbuttonbar_custom_src}}" class="firstpage schedule underbuttonbar_custom"/>
+	</div>
+	<div id="calendar_content">
+		<img ng-src="{{firstpage_underbuttonbar_calendar_src}}" class="firstpage schedule underbuttonbar_calendar"/>
+
+		<!-- CALENDAR -->
+		<label id="datetitle">  </label>
+
+		<label id="date1"> 1 </label>
+		<label id="date2"> 1 </label>
+		<label id="date3"> 1 </label>
+		<label id="date4"> 1 </label>
+		<label id="date5"> 1 </label>
+		<label id="date6"> 1 </label>
+		<label id="date7"> 1 </label>
+		<label id="date8"> 1 </label>
+		<label id="date9"> 1 </label>
+		<label id="date10"> 1 </label>
+		<label id="date11"> 1 </label>
+		<label id="date12"> 1 </label>
+		<label id="date13"> 1 </label>
+		<label id="date14"> 1 </label>
+		<label id="date15"> 1 </label>
+		<label id="date16"> 1 </label>
+		<label id="date17"> 1 </label>
+		<label id="date18"> 1 </label>
+		<label id="date19"> 1 </label>
+		<label id="date20"> 1 </label>
+		<label id="date21"> 1 </label>
+		<label id="date22"> 1 </label>
+		<label id="date23"> 1 </label>
+		<label id="date24"> 1 </label>
+		<label id="date25"> 1 </label>
+		<label id="date26"> 1 </label>
+		<label id="date27"> 1 </label>
+		<label id="date28"> 1 </label>
+		<label id="date29"> 1 </label>
+		<label id="date30"> 1 </label>
+		<label id="date31"> 1 </label>
+		<label id="date32"> 1 </label>
+		<label id="date33"> 1 </label>
+		<label id="date34"> 1 </label>
+		<label id="date35"> 1 </label>
+		<label id="date36"> 1 </label>
+		<label id="date37"> 1 </label>
+		<label id="date38"> 1 </label>
+		<label id="date39"> 1 </label>
+		<label id="date40"> 1 </label>
+		<label id="date41"> 1 </label>
+		<label id="date42"> 1 </label>
+
+		<div id="calendarcalendar">
+		</div>
+
+		<button ng-click="prevmonth()" id="nextmonthbutton">
+			<
+		</button>
+		<button ng-click="nextmonth()" id="prevmonthbutton">
+			>
+		</button>
+		<label class="calendar row weekday1"> S </label>
+		<label class="calendar row weekday2"> M </label>
+		<label class="calendar row weekday3"> T </label>
+		<label class="calendar row weekday4"> W </label>
+		<label class="calendar row weekday5"> T </label>
+		<label class="calendar row weekday6"> F </label>
+		<label class="calendar row weekday7"> S </label>
+
+		<img ng-src="{{calendar_heightline1_src}}" class="calendar heightline1"/>
+		<img ng-src="{{calendar_heightline2_src}}" class="calendar heightline2"/>
+		<img ng-src="{{calendar_heightline3_src}}" class="calendar heightline3"/>
+		<img ng-src="{{calendar_heightline4_src}}" class="calendar heightline4"/>
+		<img ng-src="{{calendar_heightline5_src}}" class="calendar heightline5"/>
+		<img ng-src="{{calendar_heightline6_src}}" class="calendar heightline6"/>
+
+		<img ng-src="{{calendar_lengthline1_src}}" class="calendar lengthline1"/>
+		<img ng-src="{{calendar_lengthline2_src}}" class="calendar lengthline2"/>
+		<img ng-src="{{calendar_lengthline3_src}}" class="calendar lengthline3"/>
+		<img ng-src="{{calendar_lengthline4_src}}" class="calendar lengthline4"/>
+		<img ng-src="{{calendar_lengthline5_src}}" class="calendar lengthline5"/>
+	</div>
+	<img ng-src="{{firstpage_underbuttonbar_src}}" class="firstpage schedule underbuttonbar"/>
+
+ 	<!-- TOOLBAR -->
+ 	<button ng-click="onToolbarAdd()" class="firstpage toolbar addbutton">
+ 		<img ng-src="{{firstpage_toolbar_add_src}}" class="firstpage toolbar addimage"/>
+ 	</button>
+ 	<button ng-click="onToolbarTrash()" class="firstpage toolbar trashbutton">
+ 		<img ng-src="{{firstpage_toolbar_trash_src}}" class="firstpage toolbar trashimage"/>
+ 	</button>
+ 	<button ng-click="onToolbarSwap()" class="firstpage toolbar swapbutton">
+ 		<img ng-src="{{firstpage_toolbar_swap_src}}" class="firstpage toolbar swapimage"/>
+ 	</button>
+ 	<button ng-click="onToolbarCaption()" class="firstpage toolbar captionbutton">
+ 		<img ng-src="{{firstpage_toolbar_caption_src}}" class="firstpage toolbar captionimage"/>
+ 	</button>
+ 	<button ng-click="onToolbarSchedule()" class="firstpage toolbar schedulebutton">
+ 		<img ng-src="{{firstpage_toolbar_schedule_src}}" class="firstpage toolbar scheduleimage"/>
+ 	</button>
+ 	<button ng-click="onToolbarAnalytics()" class="firstpage toolbar analyticsbutton">
+ 		<img ng-src="{{firstpage_toolbar_analytics_src}}" class="firstpage toolbar analyticsimage"/>
+ 	</button>
+
+ 	<img ng-src="{{firstpage_tipbar_rect_src}}" class="firstpage tipbar_rect"/>
+ 	<div id="settingView">
+ 	</div>
+	<div id="settingContent">
+		<button ng-click="close()" class="firstpage setting closebutton"> 
+			<img ng-src="{{closeSrc}}" class="firstpage setting close_Image"/>			
+		</button>
+		<label id="settinglabel"> SETTINGS </label>
+		<button ng-click="onappearance()" class="firstpage setting appearancebutton"> APPEARANCE </button>
+		<button ng-click="onaccount()" class="firstpage setting accountbutton"> ACCOUNT </button>
+	 	<img ng-src="{{bar_appearance_forappearance_image_src}}" class="firstpage setting appearancebar forappearance"/>
+	 	<img ng-src="{{bar_account_forappearance_image_src}}" class="firstpage setting accountbar forappearance"/>
+	 	<label class="lightmode"> LIGHT MODE </label>
+	 	<label class="accentcolor"> ACCENT COLOR </label>
+	 	<label class="darkmode"> DARK MODE </label>
+		<button ng-click="changemode()" class="firstpage setting changemodebutton"> 
+			<img ng-src="{{changemodeSrc}}" class="firstpage setting changemode_Image"/>
+		</button>
+	</div>
+	<div id="settingContentForAccount">
+		<button ng-click="closeForAccount()" class="firstpage setting closebuttonForAccount"> 
+			<img ng-src="{{closeSrc}}" class="firstpage setting close_Image"/>			
+		</button>
+		<label id="settinglabel"> SETTINGS </label>
+		<button ng-click="onappearanceForAccount()" class="firstpage setting appearancebuttonForAccount"> APPEARANCE </button>
+		<button ng-click="onaccountForAccount()" class="firstpage setting accountbuttonForAccount"> ACCOUNT </button>
+	 	<img ng-src="{{bar_appearance_foraccount_image_src}}" class="firstpage setting appearancebar foraccount"/>
+	 	<img ng-src="{{bar_account_foraccount_image_src}}" class="firstpage setting accountbar foraccount"/>
+	 	<label class="firstpage setting updatemaillabel"> EMAIL </label>
+	 	<input type="text" name="input5" ng-model="email" required ng-trim="false" class="firstpage setting updatemailinput">
+	 	<label class="firstpage setting updatepasswordlabel"> PASSWORD </label>
+	 	<input type="password" name="input6" ng-model="password" required ng-trim="false" class="firstpage setting updatpasswordinput">
+	 	<label class="firstpage setting updatepaymentlabel"> PAYMENT </label>
+	 	<button ng-click="onupdatemail()" class="firstpage setting updatemailbutton"> UPDATE </button>
+	 	<button ng-click="onupdatepass()" class="firstpage setting updatepassbutton"> UPDATE </button>
+	 	<button ng-click="onupdatepayment()" class="firstpage setting updatepaymentbutton"> UPDATE </button>
+	</div>
+	<div id="expandBackView" ng-click="closeExpand()">
+	</div>
+	<div id="expandContent">
+		<img ng-src="{{firstpage_expandimage_src}}" class="firstpage template_expand_image"/>
+	</div>
+	<button id="prevImage" ng-click="onprev()">
+		<img ng-src="{{prevImageSrc}}" class="firstpage expand prev_Image"/>
+	</button>
+	<button id="nextImage" ng-click="onnext()">
+		<img ng-src="{{nextImageSrc}}" class="firstpage expand next_Image"/>
+	</button>
+
+	<div id="captionBackground" ng-click="closeCaption()">
+	</div>
+	<div id="captionContent">
+		<button ng-click="closeForCaption()" class="firstpage caption closebutton">
+			<img ng-src="{{closeCaptionSrc}}" class="firstpage caption close_Image"/>
+		</button>
+		<img ng-src="{{captionImageSrc}}" class="firstpage caption image"/>
+		<label class="firstpage caption titlelabel"> CAPTION </label>
+		<textarea ng-model="caption" class="firstpage caption comment"> </textarea>
+		<button class="firstpage caption savebutton"> SAVE </button>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

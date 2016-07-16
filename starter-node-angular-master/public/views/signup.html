@@ -1,0 +1,21 @@
+<div class="jumbotron text-center">
+	<form name="form" ng-submit="register()" role="form">
+		<img ng-src="{{myImgSrc}}" class="logo background_image">
+	 	<img ng-src="{{UNUMImgSrc}}" class="logo UNUM_Image">
+	 	<img ng-src="{{backarrow}}" class="logo backArrow">
+	 	<a class="logo home" href="/"> HOME </a>
+	 	<a class="logo login forsignup" href="/login"> LOG IN </a>
+	 	<a class="logo signup forsignup" href="/signup"> SIGN UP </a>
+	 	
+	 	<label class="logo label1">Email: </label>
+		<input type="text" name="input3" ng-pattern="example.word" ng-model="email" required ng-trim="false" class="logo inputmail">
+
+	 	<label class="logo label2">Password: </label>
+		<input type="password" name="input4" ng-pattern="example.word" ng-model="password" required ng-trim="false" class="logo inputpassword">
+
+	 	<label class="logo confirm">Confirm: </label>
+		<input type="password" name="input5" ng-pattern="example.word" ng-model="confirmpassword" required ng-trim="false" class="logo confirm inputpassword">
+
+		<button ng-click="Login()" class="logo SignupButton"> Sign Up </button>
+	</form>
+</div>
