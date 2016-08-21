@@ -1,4 +1,5 @@
 angular.module('FirstPageCtrl', []).controller('FirstPageController', function($scope, $sce, $location) {
+
 	$scope.DummyText="This is Dummy Page";
 	$scope.firstpage_unum_image_src = $sce.trustAsResourceUrl('img/UNUM.png');
 	$scope.lineSrc = $sce.trustAsResourceUrl('img/line.png');
@@ -291,11 +292,47 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		if (window.mode == "left") {
 			window.mode = "right";
 			$scope.changemodeSrc = $sce.trustAsResourceUrl('img/settings/switchoff.png');
+			changeScene();
 		} else if (window.mode == "right") {
 			window.mode = "left";
 			$scope.changemodeSrc = $sce.trustAsResourceUrl('img/settings/switchon.png');
+			changeScene();
 		} else {
 			alert("hihaha");
+		}
+	}
+
+	changeScene = function() {
+		if (window.mode == "left") {
+			document.getElementById('settingContent').style.background = "white";
+			document.getElementById('settingContentForAccount').style.background = "white";
+			document.getElementById('changemodebutton').style.background = "white";
+			document.getElementById('remindar_content').style.background = "white";
+			document.getElementById('custompost_content').style.background = "white";
+			document.getElementById('calendar_content').style.background = "white";
+
+			for (var i = 1; i < 43; i++) {
+				if (document.getElementById('date' + i).style.color == "white") {
+					document.getElementById('date' + i).style.color = "black";
+				}
+			}
+
+			document.getElementById('mainbar').style.background = "lightgray";
+
+		} else {
+			document.getElementById('settingContent').style.background = "black";
+			document.getElementById('settingContentForAccount').style.background = "black";
+			document.getElementById('changemodebutton').style.background = "gray";
+			document.getElementById('remindar_content').style.background = "black";			
+			document.getElementById('custompost_content').style.background = "black";
+			document.getElementById('calendar_content').style.background = "black";
+
+			for (var i = 1; i < 43; i++) {
+				if (document.getElementById('date' + i).style.color == "black") {
+					document.getElementById('date' + i).style.color = "white";
+				}
+			}
+			document.getElementById('mainbar').style.background = "black";
 		}
 	}
 
@@ -922,16 +959,5 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	$scope.xs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
 });
-
-
-
-
-
-
-
-
-
-
-
 
 

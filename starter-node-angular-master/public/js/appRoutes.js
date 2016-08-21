@@ -34,11 +34,28 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'NerdController'
 		})
 
+		.when('/instagram', {
+			templateUrl: 'views/instagram.html',
+			controller: 'InstagramController'
+		})
+
+		.when('/instagram', {
+			templateUrl: 'views/instagram.html',
+			controller: 'InstagramController'
+		})
+
 		.when('/geeks', {
 			templateUrl: 'views/geek.html',
 			controller: 'GeekController'	
 		});
 
 	$locationProvider.html5Mode(true);
+
+	// $stateProvider.
+ //    state('oauthsuccess', {
+ //        url: "/access_token={access_token}",
+ //        templateUrl: '/Partials/OAuth.html',
+ //        controller: 'OAuthLoginController'
+ //    });
 
 }]);

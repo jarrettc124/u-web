@@ -1,6 +1,6 @@
 <div class="jumbotron text-center">
 	<div class="firstpage topbar"></div>
-	<div class="firstpage mainbar"></div>
+	<div class="firstpage mainbar" id="mainbar"></div>
  	<img ng-src="{{firstpage_unum_image_src}}" class="firstpage UNUM_Image"/>
  	<img ng-src="{{lineSrc}}" class="firstpage line_Image"/>
  	<button ng-click="dropDown()" class="firstpage dropdownmenu"> @Drop Down <img ng-src="{{downArrowSrc}}" class="firstpage downarrow_Image"> </button>
@@ -227,7 +227,7 @@
 	 	<label class="lightmode"> LIGHT MODE </label>
 	 	<label class="accentcolor"> ACCENT COLOR </label>
 	 	<label class="darkmode"> DARK MODE </label>
-		<button ng-click="changemode()" class="firstpage setting changemodebutton"> 
+		<button ng-click="changemode()" class="firstpage setting changemodebutton" id="changemodebutton"> 
 			<img ng-src="{{changemodeSrc}}" class="firstpage setting changemode_Image"/>
 		</button>
 	</div>

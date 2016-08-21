@@ -17,4 +17,8 @@ angular.module('LogoCtrl', []).controller('LogoController', function($scope, $sc
 	$scope.gotoLogin = function() {
 		window.location = "login";
 	}
+
+	$scope.gotoInstagram = function() {
+		window.location = "instagram";
+	}
 });

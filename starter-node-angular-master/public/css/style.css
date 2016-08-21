@@ -236,6 +236,14 @@
 	height: 40px;
 }
 
+.logo.gotoInstagram {
+	position: absolute;
+	top: 670px;
+	left: 480px;
+	width: 240px;
+	height: 40px;
+}
+
 .logo.backArrow {
 	position: absolute;
 	top: 50px;
