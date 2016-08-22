@@ -1043,6 +1043,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage2 {
 	position: absolute;
@@ -1050,6 +1051,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage3 {
 	position: absolute;
@@ -1057,6 +1059,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage4 {
 	position: absolute;
@@ -1064,6 +1067,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage5 {
 	position: absolute;
@@ -1071,6 +1075,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage6 {
 	position: absolute;
@@ -1078,6 +1083,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage7 {
 	position: absolute;
@@ -1085,6 +1091,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage8 {
 	position: absolute;
@@ -1092,6 +1099,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage9 {
 	position: absolute;
@@ -1099,6 +1107,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage10 {
 	position: absolute;
@@ -1106,6 +1115,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage11 {
 	position: absolute;
@@ -1113,6 +1123,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage12 {
 	position: absolute;
@@ -1120,6 +1131,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage13 {
 	position: absolute;
@@ -1127,6 +1139,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage14 {
 	position: absolute;
@@ -1134,6 +1147,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage15 {
 	position: absolute;
@@ -1141,6 +1155,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage16 {
 	position: absolute;
@@ -1148,6 +1163,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage17 {
 	position: absolute;
@@ -1155,6 +1171,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 .firstpage.templateimage18 {
 	position: absolute;
@@ -1162,6 +1179,7 @@
 	left: 0;
 	width: 120px;
 	height: 120px;
+	border:1px solid black;
 }
 
 .firstpage.template_expand_image {
@@ -1215,6 +1233,7 @@
 	left: 70px;
 	width: 320px;
 	height: 320px;
+	border:1px solid #021a40;
 }
 
 .firstpage.caption.titlelabel {
@@ -1974,6 +1993,69 @@
 	left: 580px;
 	font-size: 12px;
 }
+
+#trashDialog {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 1200px;
+	height: 750px;
+	opacity: 0.6;
+	background-color: black;
+}
+
+#trashDialogContent {
+	position: absolute;
+	top: 200px;
+	left: 50px;
+	width: 300px;
+	height: 160px;
+	background-color: white;	
+}
+
+.firstpage.caption.closetrashdialog {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+}
+
+.firstpage.caption.close_Trash_TopLabel {
+	position: absolute;
+	top: 20px;
+	left: 100px;
+	width: 120px;
+	height: 20px;
+}
+
+.firstpage.caption.close_Trash_MediumLabel {
+	position: absolute;
+	top: 60px;
+	left: 70px;
+	width: 200px;
+	height: 20px;
+}
+
+.firstpage.caption.trashDialogYes {
+	position: absolute;
+	top: 100px;
+	left: 40px;
+	width: 100px;
+	height: 30px;
+}
+
+.firstpage.caption.trashDialogNo {
+	position: absolute;
+	top: 100px;
+	left: 160px;
+	width: 100px;
+	height: 30px;
+}
+
+
+
+
 
 
 

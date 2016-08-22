@@ -1,5 +1,6 @@
 angular.module('FirstPageCtrl', []).controller('FirstPageController', function($scope, $sce, $location) {
 
+	//	init variables
 	$scope.DummyText="This is Dummy Page";
 	$scope.firstpage_unum_image_src = $sce.trustAsResourceUrl('img/UNUM.png');
 	$scope.lineSrc = $sce.trustAsResourceUrl('img/line.png');
@@ -14,6 +15,9 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	document.getElementById('custompost_content').style.visibility = "hidden";
 	document.getElementById('calendar_content').style.visibility = "hidden";
 
+	document.getElementById("trashDialog").style.visibility = "hidden";
+	document.getElementById("trashDialogContent").style.visibility = "hidden";
+
 	window.dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'TUR', 'FRI', 'SAT'];
 	window.monthOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	window.unleapmonthdays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -27,6 +31,13 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	window.currentmonth = 0;
 	window.currentdate = 0;
 
+	window.caption = [];
+	for (var i = 0; i < 18; i++) {
+		window.caption.push("aaa" + i);
+	}
+	window.multiSelectID = [];
+
+	//	implement methods
 	$scope.$on('$viewContentLoaded', function() {
 		var firstdayofweek = getFirstDayOfCurrentPage();
 		var dayscount = window.unleapmonthdays[window.today.getMonth()];
@@ -653,12 +664,22 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 
 	$scope.firstpage_toolbar_add_src = $sce.trustAsResourceUrl('img/toolbar/Add.png');
 	$scope.onToolbarAdd = function() {
-
+		document.getElementById('the-photo-file-field').click();
 	}
 
 	$scope.firstpage_toolbar_trash_src = $sce.trustAsResourceUrl('img/toolbar/Trash.png');
 	$scope.onToolbarTrash = function() {
+		document.getElementById("trashDialog").style.visibility = "visible";
+		document.getElementById("trashDialogContent").style.visibility = "visible";
 
+		var temp = 0;
+		for (var i = 0; i < 18; i++) {
+			if (window.multiselect[i] == 1) {
+				temp++;
+			}
+		}
+
+		document.getElementById("firstpage caption close_Trash_TopLabel").innerHTML = "Delete " + temp + " Selected Images";
 	}
 
 	$scope.firstpage_toolbar_swap_src = $sce.trustAsResourceUrl('img/toolbar/Swap.png');
@@ -746,7 +767,26 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		document.getElementById('captionBackground').style.visibility = "visible";
 		document.getElementById('captionContent').style.visibility = "visible";
 		$scope.closeCaptionSrc = $sce.trustAsResourceUrl('img/settings/cancel.png');
-		$scope.captionImageSrc = $sce.trustAsResourceUrl('img/temp/' + window.selectedImageId + '.jpeg');
+		var tempCount = 0;
+		var tempStr = "";
+		for (var i = 0; i < 18; i++) {
+			if (window.multiselect[i] == 1) {
+				tempCount++;
+				tempStr = window.caption[i];
+			}
+		}
+
+		if (tempCount == 1) {
+			var str = tempStr;
+			$scope.captionImageSrc = $sce.trustAsResourceUrl('img/temp/' + window.selectedImageId + '.jpeg');
+			document.getElementById("firstpage caption comment").value = window.caption[window.selectedImageId - 1];
+		} else if (tempCount > 1) {
+			document.getElementById("firstpage caption comment").value = "";
+		} else {
+			tempCount = 0;
+			$scope.captionImageSrc = $sce.trustAsResourceUrl('img/temp/23.jpg');
+			document.getElementById("firstpage caption comment").value = "";
+		}
 	}
 
 	$scope.firstpage_toolbar_schedule_src = $sce.trustAsResourceUrl('img/toolbar/Schedule.png');
@@ -785,6 +825,27 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	$scope.closeForCaption = function() {
 		document.getElementById('captionBackground').style.visibility = "hidden";
 		document.getElementById('captionContent').style.visibility = "hidden";
+
+		var tempCount = 0;
+		for (var i = 0; i < 18; i++) {
+			if (window.multiselect[i] == 1) {
+				tempCount++;
+			}
+		}
+
+		if (tempCount == 1) {
+			window.caption[window.selectedImageId - 1] = document.getElementById("firstpage caption comment").value;
+		} else if (tempCount > 1) {
+			for (var i = 0; i < 18; i++) {
+				if (window.multiselect[i] == 1) {
+					window.caption[i] = document.getElementById("firstpage caption comment").value;
+				}
+			}
+
+		} else {
+
+		}
+
 	}
 	$scope.firstpage_schedule_card_title_image_src = $sce.trustAsResourceUrl('img/toolbar/Schedule.png');
 	$scope.onReminder = function() {
@@ -958,6 +1019,101 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 
 	$scope.xs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
+	$scope.closeTrashDialog = function() {
+		document.getElementById("trashDialog").style.visibility = "hidden";
+		document.getElementById("trashDialogContent").style.visibility = "hidden";
+	}
+	$scope.closeTrashSrc = $sce.trustAsResourceUrl('img/settings/cancel.png');
+
+	$scope.trashYes = function() {
+		for (var i = 0; i < 18; i++) {
+			if (window.multiselect[i] == 1) {
+				deleteImage(i);
+			}
+		}
+		document.getElementById("trashDialog").style.visibility = "hidden";
+		document.getElementById("trashDialogContent").style.visibility = "hidden";
+	}
+
+	deleteImage = function(i) {
+		if (i == 0) {
+			$scope.firstpage_templateimage1_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 1) {
+			$scope.firstpage_templateimage2_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 2) {
+			$scope.firstpage_templateimage3_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 3) {
+			$scope.firstpage_templateimage4_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 4) {
+			$scope.firstpage_templateimage5_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 5) {
+			$scope.firstpage_templateimage6_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 6) {
+			$scope.firstpage_templateimage7_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 7) {
+			$scope.firstpage_templateimage8_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 8) {
+			$scope.firstpage_templateimage9_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 9) {
+			$scope.firstpage_templateimage10_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 10) {
+			$scope.firstpage_templateimage11_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 11) {
+			$scope.firstpage_templateimage12_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 12) {
+			$scope.firstpage_templateimage13_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 13) {
+			$scope.firstpage_templateimage14_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 14) {
+			$scope.firstpage_templateimage15_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 15) {
+			$scope.firstpage_templateimage16_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 16) {
+			$scope.firstpage_templateimage17_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+		if (i == 17) {
+			$scope.firstpage_templateimage18_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
+		}
+	}
+
+	$scope.trashNo = function() {
+		document.getElementById("trashDialog").style.visibility = "hidden";
+		document.getElementById("trashDialogContent").style.visibility = "hidden";
+	}
+
+	$("#the-photo-file-field").change(function() {
+        renderImage(this.files[0]);
+    });
+
+    function renderImage(file){
+        var reader = new FileReader();
+        reader.onload = function(event){
+            the_url = event.target.result;
+           	for (var i = 0; i < 18; i++) {
+           		if (window.multiselect[i] == 1) {
+		            $('#grid' + (i+1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+the_url+"' />");
+           		}
+           	}
+        }
+    
+        reader.readAsDataURL(file);
+    }
 });
 
 
