@@ -78,19 +78,57 @@
 	<button ng-click="onReminder()" class="firstpage schedule remindarbutton"> REMINDERS </button>
 	<button ng-click="onCustomPost()" class="firstpage schedule custompostbutton"> CUSTOM POST </button>
 	<button ng-click="onCalendar()" class="firstpage schedule calendarbutton"> CALENDAR </button>
-	<div id="remindar_content">
-		<img ng-src="{{firstpage_underbuttonbar_reminder_src}}" class="firstpage schedule underbuttonbar_reminder"/>
-		<label class="firstpage schedule reminder editreminder_title"> EDIT REMINDER </label>
 
-		<label class="firstpage schedule reminder repeat_title"> REPEAT </label>
-		<button class="firstpage schedule reminder repeat day1" id="repeatdaybutton1" ng-click="onSun()"> SUN </button>
-		<button class="firstpage schedule reminder repeat day2" id="repeatdaybutton2" ng-click="onMon()"> MON </button>
-		<button class="firstpage schedule reminder repeat day3" id="repeatdaybutton3" ng-click="onTue()"> TUE </button>
-		<button class="firstpage schedule reminder repeat day4" id="repeatdaybutton4" ng-click="onWed()"> WED </button>
-		<button class="firstpage schedule reminder repeat day5" id="repeatdaybutton5" ng-click="onTur()"> THU </button>
-		<button class="firstpage schedule reminder repeat day6" id="repeatdaybutton6" ng-click="onFri()"> FRI </button>
-		<button class="firstpage schedule reminder repeat day7" id="repeatdaybutton7" ng-click="onSat()"> SAT </button>
-		<button class="firstpage schedule reminder update"> UPDATE </button>
+	<!-- Reminder -->
+
+	<div id="remindar_content">
+		<div id="reminder1">
+			<label class="firstpage schedule reminder_content1 time" id="firstpage schedule reminder_content1 time"> 12:00 AM </label>
+			<label class="firstpage schedule reminder_content1 weekday" id="firstpage schedule reminder_content1 weekday"> Monday, Tuesday </label>
+			<button ng-click="reminderEdit1()" class="firstpage schedule reminder_content1 editbutton"> Edit </button>
+			<button ng-click="reminderDelete1()" class="firstpage schedule reminder_content1 deletebutton"> Delete </button>
+		</div>
+		<div id="reminder2">
+			<label class="firstpage schedule reminder_content2 time" id="firstpage schedule reminder_content2 time"> 12:00 AM </label>
+			<label class="firstpage schedule reminder_content2 weekday" id="firstpage schedule reminder_content2 weekday"> Monday, Tuesday </label>
+			<button ng-click="reminderEdit2()" class="firstpage schedule reminder_content2 editbutton"> Edit </button>
+			<button ng-click="reminderDelete2()" class="firstpage schedule reminder_content2 deletebutton"> Delete </button>
+		</div>
+		<div id="reminder3">
+			<label class="firstpage schedule reminder_content3 time" id="firstpage schedule reminder_content3 time"> 12:00 AM </label>
+			<label class="firstpage schedule reminder_content3 weekday" id="firstpage schedule reminder_content3 weekday"> Monday, Tuesday </label>
+			<button ng-click="reminderEdit3()" class="firstpage schedule reminder_content3 editbutton"> Edit </button>
+			<button ng-click="reminderDelete3()" class="firstpage schedule reminder_content3 deletebutton"> Delete </button>
+		</div>
+		<div id="reminder4">
+			<label class="firstpage schedule reminder_content4 time" id="firstpage schedule reminder_content4 time"> 12:00 AM </label>
+			<label class="firstpage schedule reminder_content4 weekday" id="firstpage schedule reminder_content4 weekday"> Monday, Tuesday </label>
+			<button ng-click="reminderEdit4()" class="firstpage schedule reminder_content4 editbutton"> Edit </button>
+			<button ng-click="reminderDelete4()" class="firstpage schedule reminder_content4 deletebutton"> Delete </button>
+		</div>
+		<div id="reminder5">
+			<label class="firstpage schedule reminder_content5 time" id="firstpage schedule reminder_content5 time"> 12:00 AM </label>
+			<label class="firstpage schedule reminder_content5 weekday" id="firstpage schedule reminder_content5 weekday"> Monday, Tuesday </label>
+			<button ng-click="reminderEdit5()" class="firstpage schedule reminder_content5 editbutton"> Edit </button>
+			<button ng-click="reminderDelete5()" class="firstpage schedule reminder_content5 deletebutton"> Delete </button>
+		</div>
+
+		<button class="firstpage schedule reminder addreminder" ng-click="addReminder()"> ADD REMINDER </button>
+	</div>
+
+	<div id="reminder_add_content">
+		<img ng-src="{{firstpage_underbuttonbar_reminder_create_src}}" class="firstpage schedule underbuttonbar_reminder_create"/>
+		<label class="firstpage schedule reminder_create editreminder_title"> CREATE REMINDER </label>
+
+		<label class="firstpage schedule reminder_create repeat_title"> REPEAT </label>
+		<button class="firstpage schedule reminder_create repeat day1" id="repeatdaybutton1" ng-click="onSun_createReminder()"> SUN </button>
+		<button class="firstpage schedule reminder_create repeat day2" id="repeatdaybutton2" ng-click="onMon_createReminder()"> MON </button>
+		<button class="firstpage schedule reminder_create repeat day3" id="repeatdaybutton3" ng-click="onTue_createReminder()"> TUE </button>
+		<button class="firstpage schedule reminder_create repeat day4" id="repeatdaybutton4" ng-click="onWed_createReminder()"> WED </button>
+		<button class="firstpage schedule reminder_create repeat day5" id="repeatdaybutton5" ng-click="onTur_createReminder()"> THU </button>
+		<button class="firstpage schedule reminder_create repeat day6" id="repeatdaybutton6" ng-click="onFri_createReminder()"> FRI </button>
+		<button class="firstpage schedule reminder_create repeat day7" id="repeatdaybutton7" ng-click="onSat_createReminder()"> SAT </button>
+		<button class="firstpage schedule reminder_create create" ng-click="reminderCreate()"> CREATE </button>
 
 		<div class="dropdownHour">
 			<select ng-model="makeHour.selected" ng-options="makeHour.value as makeHour.text for makeHour in makeHours" ng-change="selectedHour(makeHour.selected)" ng-style="{'width': '100px'}">
@@ -108,9 +146,44 @@
 		</div>
 
 	</div>
+
+	<div id="remindar_update_content">
+		<img ng-src="{{firstpage_underbuttonbar_reminder_src}}" class="firstpage schedule underbuttonbar_reminder"/>
+		<label class="firstpage schedule reminder_edit editreminder_title"> EDIT REMINDER </label>
+
+		<label class="firstpage schedule reminder_edit repeat_title"> REPEAT </label>
+		<button class="firstpage schedule reminder_edit repeat day1" id="repeatdaybutton1_edit" ng-click="onSun_editReminder()"> SUN </button>
+		<button class="firstpage schedule reminder_edit repeat day2" id="repeatdaybutton2_edit" ng-click="onMon_editReminder()"> MON </button>
+		<button class="firstpage schedule reminder_edit repeat day3" id="repeatdaybutton3_edit" ng-click="onTue_editReminder()"> TUE </button>
+		<button class="firstpage schedule reminder_edit repeat day4" id="repeatdaybutton4_edit" ng-click="onWed_editReminder()"> WED </button>
+		<button class="firstpage schedule reminder_edit repeat day5" id="repeatdaybutton5_edit" ng-click="onTur_editReminder()"> THU </button>
+		<button class="firstpage schedule reminder_edit repeat day6" id="repeatdaybutton6_edit" ng-click="onFri_editReminder()"> FRI </button>
+		<button class="firstpage schedule reminder_edit repeat day7" id="repeatdaybutton7_edit" ng-click="onSat_editReminder()"> SAT </button>
+		<button class="firstpage schedule reminder_edit update" ng-click="updateReminder()"> UPDATE </button>
+
+		<div class="dropdownHour">
+			<select ng-model="makeHour.selected" ng-options="makeHour.value as makeHour.text for makeHour in makeHours" ng-change="selectedHour(makeHour.selected)" ng-style="{'width': '100px'}" id="dropdownhour_update" ng-selected="{SimpleSelectedData}">
+			</select>
+		</div>
+
+		<div class="dropdownMin">
+			<select ng-model="makeMin.selected" ng-options="makeMin.value as makeMin.text for makeMin in makeMins" ng-change="selectedMin(makeMin.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+		<div class="dropdownAMPM">
+			<select ng-model="makeAMPM.selected" ng-options="makeAMPM.value as makeAMPM.text for makeAMPM in makeAMPMs" ng-change="selectedAMPM(makeAMPM.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+	</div>
+
+	<!-- Custom Post -->
 	<div id="custompost_content">
 		<img ng-src="{{firstpage_underbuttonbar_custom_src}}" class="firstpage schedule underbuttonbar_custom"/>
 	</div>
+
+	<!-- Calendar -->
 	<div id="calendar_content">
 		<img ng-src="{{firstpage_underbuttonbar_calendar_src}}" class="firstpage schedule underbuttonbar_calendar"/>
 

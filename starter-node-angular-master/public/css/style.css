@@ -1342,7 +1342,33 @@
 	background-color: white;
 }
 
-.firstpage.schedule.reminder.editreminder_title {
+#remindar_update_content {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 500px;
+	background-color: white;
+}
+
+#reminder_add_content {
+	position: absolute;
+	top: 260px;
+	left: 404px;
+	width: 692px;
+	height: 500px;
+	background-color: green;
+}
+
+.firstpage.schedule.reminder_create.editreminder_title {
+	position: absolute;
+	top: 30px;
+	left: 280px;
+	width: 200px;
+	height: 20px;	
+}
+
+.firstpage.schedule.reminder_edit.editreminder_title {
 	position: absolute;
 	top: 30px;
 	left: 280px;
@@ -1377,7 +1403,7 @@
 	background-color: none;
 }
 
-.firstpage.schedule.reminder.repeat_title {
+.firstpage.schedule.reminder_create.repeat_title {
 	position: absolute;
 	top: 200px;
 	left: 150px;
@@ -1385,7 +1411,25 @@
 	height: 30px;	
 }
 
+.firstpage.schedule.reminder_edit.repeat_title {
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	width: 100px;
+	height: 30px;
+}
+
 #repeatdaybutton1 {
+	position: absolute;
+	top: 250px;
+	left: 150px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton1_edit {
 	position: absolute;
 	top: 250px;
 	left: 150px;
@@ -1405,7 +1449,27 @@
 	border: 1px solid #000;
 }
 
+#repeatdaybutton2_edit {
+	position: absolute;
+	top: 250px;
+	left: 210px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton3 {
+	position: absolute;
+	top: 250px;
+	left: 270px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton3_edit {
 	position: absolute;
 	top: 250px;
 	left: 270px;
@@ -1425,7 +1489,27 @@
 	border: 1px solid #000;
 }
 
+#repeatdaybutton4_edit {
+	position: absolute;
+	top: 250px;
+	left: 330px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton5 {
+	position: absolute;
+	top: 250px;
+	left: 390px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatdaybutton5_edit {
 	position: absolute;
 	top: 250px;
 	left: 390px;
@@ -1445,6 +1529,16 @@
 	border: 1px solid #000;
 }
 
+#repeatdaybutton6_edit {
+	position: absolute;
+	top: 250px;
+	left: 450px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton7 {
 	position: absolute;
 	top: 250px;
@@ -1455,11 +1549,43 @@
 	border: 1px solid #000;
 }
 
-.firstpage.schedule.reminder.update {
+#repeatdaybutton7_edit {
+	position: absolute;
+	top: 250px;
+	left: 510px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+.firstpage.schedule.reminder_create.create {
 	position: absolute;
 	top: 400px;
 	left: 550px;
 	width: 80px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: orange;
+}
+
+.firstpage.schedule.reminder_edit.update {
+	position: absolute;
+	top: 400px;
+	left: 550px;
+	width: 80px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: orange;
+}
+
+.firstpage.schedule.reminder.addreminder {
+	position: absolute;
+	top: 440px;
+	left: 540px;
+	width: 120px;
 	height: 30px;
 	border-width: 0;
 	border-style: none;
@@ -2053,13 +2179,230 @@
 	height: 30px;
 }
 
+#reminder1 {
+	position: absolute;
+	top: 3px;
+	left: 1px;
+	width: 690px;
+	height: 80px;
+	background-color: lightgray;
+}
 
+#reminder2 {
+	position: absolute;
+	top: 84px;
+	left: 1px;
+	width: 690px;
+	height: 80px;
+	background-color: lightgray;
+}
 
+#reminder3 {
+	position: absolute;
+	top: 165px;
+	left: 1px;
+	width: 690px;
+	height: 80px;
+	background-color: lightgray;
+}
 
+#reminder4 {
+	position: absolute;
+	top: 246px;
+	left: 1px;
+	width: 690px;
+	height: 80px;
+	background-color: lightgray;
+}
 
+#reminder5 {
+	position: absolute;
+	top: 327px;
+	left: 1px;
+	width: 690px;
+	height: 80px;
+	background-color: lightgray;
+}
 
+.firstpage.schedule.reminder_content1.time {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 100px;
+	height: 40px;
+	font-size: medium;
+}
 
+.firstpage.schedule.reminder_content1.weekday {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	width: 400px;
+	height: 40px;
+	font-size: smaller;
+}
 
+.firstpage.schedule.reminder_content1.editbutton {
+	position: absolute;
+	top: 26px;
+	left: 520px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content1.deletebutton {
+	position: absolute;
+	top: 26px;
+	left: 600px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content2.time {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 100px;
+	height: 40px;
+	size: 10;
+}
+
+.firstpage.schedule.reminder_content2.weekday {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	width: 400px;
+	height: 40px;
+	font-size: smaller;
+}
+
+.firstpage.schedule.reminder_content2.editbutton {
+	position: absolute;
+	top: 26px;
+	left: 520px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content2.deletebutton {
+	position: absolute;
+	top: 26px;
+	left: 600px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content3.time {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 100px;
+	height: 40px;
+	size: 10;
+}
+
+.firstpage.schedule.reminder_content3.weekday {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	width: 400px;
+	height: 40px;
+	font-size: smaller;
+}
+
+.firstpage.schedule.reminder_content3.editbutton {
+	position: absolute;
+	top: 26px;
+	left: 520px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content3.deletebutton {
+	position: absolute;
+	top: 26px;
+	left: 600px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content4.time {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 100px;
+	height: 40px;
+	size: 10;
+}
+
+.firstpage.schedule.reminder_content4.weekday {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	width: 400px;
+	height: 40px;
+	font-size: smaller;
+}
+
+.firstpage.schedule.reminder_content4.editbutton {
+	position: absolute;
+	top: 26px;
+	left: 520px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content4.deletebutton {
+	position: absolute;
+	top: 26px;
+	left: 600px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content5.time {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 100px;
+	height: 40px;
+	size: 10;
+}
+
+.firstpage.schedule.reminder_content5.weekday {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	width: 400px;
+	height: 40px;
+	font-size: smaller;
+}
+
+.firstpage.schedule.reminder_content5.editbutton {
+	position: absolute;
+	top: 26px;
+	left: 520px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
+
+.firstpage.schedule.reminder_content5.deletebutton {
+	position: absolute;
+	top: 26px;
+	left: 600px;
+	width: 60px;
+	height: 30px;
+	font-size: small;
+}
 
 
 

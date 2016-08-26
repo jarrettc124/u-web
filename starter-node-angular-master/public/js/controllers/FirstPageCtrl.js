@@ -1,4 +1,13 @@
 angular.module('FirstPageCtrl', []).controller('FirstPageController', function($scope, $sce, $location) {
+	//code infos
+
+	//reminderInfo[0][0] : reminder -> hour
+	//reminderInfo[0][1] : reminder -> minute
+	//reminderInfo[0][2] : reminder -> AMPM
+	//reminderInfo[0][3] : reminder -> sunday true false
+	//............
+	//reminderInfo[0][9] : reminder -> saturday true false
+	//nowEditingReminder : 
 
 	//	init variables
 	$scope.DummyText="This is Dummy Page";
@@ -18,6 +27,9 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	document.getElementById("trashDialog").style.visibility = "hidden";
 	document.getElementById("trashDialogContent").style.visibility = "hidden";
 
+	document.getElementById("remindar_update_content").style.visibility = "hidden";
+	document.getElementById("reminder_add_content").style.visibility = "hidden";
+
 	window.dayOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'TUR', 'FRI', 'SAT'];
 	window.monthOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	window.unleapmonthdays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -36,6 +48,30 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		window.caption.push("aaa" + i);
 	}
 	window.multiSelectID = [];
+
+	window.reminderInfo = [];
+	for (var i = 0; i < 5; i++) {
+		window.reminderInfo.push([]);
+	}
+
+	window.remindarCount = 0;
+	window.worldReminder = [];
+	window.createdHour = 0;
+	window.createdMinute = 0;
+	window.createdPM = 0;
+	window.createdMon = false;
+	window.createdTue = false;
+	window.createdWed = false;
+	window.createdTur = false;
+	window.createdFri = false;
+	window.createdSat = false;
+	window.createdSun = false;
+
+	window.nowEditingReminder = 0;
+
+	for (var i = 0; i < 5; i++) {
+		window.worldReminder.push("mon:f tue:f wed:f thr:f fri:f sat:f sun:f h:00 m:00 pm:f");
+	}
 
 	//	implement methods
 	$scope.$on('$viewContentLoaded', function() {
@@ -67,6 +103,12 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		window.currentyear = window.today.getFullYear();
 		window.currentmonth = window.today.getMonth();
 		window.currentdate = window.today.getDate();
+
+		if (window.remindarCount == 0) {
+			for (var i = 1; i <= 5; i++) {
+				document.getElementById('reminder' + i).style.visibility = "hidden";
+			}
+		}
 	});
 
 	window.dotPos = [
@@ -247,10 +289,11 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	window.mode = "left";
 	window.schedule_select_id = 0;
 	window.edit_reminder_repeat_sun = [];
-
+	window.edit_reminder_repeat = [];
 
 	for (var i = 0; i < 7; i++) {
 		window.edit_reminder_repeat_sun.push(false);
+		window.edit_reminder_repeat.push(false);
 	}
 
 	$scope.dropDown = function() {
@@ -313,12 +356,13 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		}
 	}
 
+//change setting functions
 	changeScene = function() {
 		if (window.mode == "left") {
 			document.getElementById('settingContent').style.background = "white";
 			document.getElementById('settingContentForAccount').style.background = "white";
 			document.getElementById('changemodebutton').style.background = "white";
-			document.getElementById('remindar_content').style.background = "white";
+			document.getElementById('remindar_update_content').style.background = "white";
 			document.getElementById('custompost_content').style.background = "white";
 			document.getElementById('calendar_content').style.background = "white";
 
@@ -334,7 +378,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 			document.getElementById('settingContent').style.background = "black";
 			document.getElementById('settingContentForAccount').style.background = "black";
 			document.getElementById('changemodebutton').style.background = "gray";
-			document.getElementById('remindar_content').style.background = "black";			
+			document.getElementById('remindar_update_content').style.background = "black";			
 			document.getElementById('custompost_content').style.background = "black";
 			document.getElementById('calendar_content').style.background = "black";
 
@@ -850,19 +894,19 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	$scope.firstpage_schedule_card_title_image_src = $sce.trustAsResourceUrl('img/toolbar/Schedule.png');
 	$scope.onReminder = function() {
 		window.schedule_select_id = 0;
-		document.getElementById('remindar_content').style.visibility = "visible";
+		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "hidden";
 		document.getElementById('calendar_content').style.visibility = "hidden";
 	}
 	$scope.onCustomPost = function() {
 		window.schedule_select_id = 1;
-		document.getElementById('remindar_content').style.visibility = "visible";
+		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "hidden";
 	}
 	$scope.onCalendar = function() {
 		window.schedule_select_id = 2;
-		document.getElementById('remindar_content').style.visibility = "visible";
+		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "visible";
 	}
@@ -887,6 +931,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	];
 	$scope.selectedHour = function(value) {
 		alert(value);
+		window.createdHour = value;
 	}
 
 	$scope.makeMins = [
@@ -953,32 +998,57 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	];
 	$scope.selectedMin = function(value) {
 		alert(value);
+		window.createdMinute = value;
 	}
 
 	$scope.makeAMPMs = [{ "value": 0, "text": "AM" }, { "value": 1, "text": "PM" }];
 	$scope.selectedAMPM = function(value) {
 		alert(value);
+		window.createdPM = value;
 	}
-	$scope.onSun = function() {
+	$scope.onSun_createReminder = function() {
 		toggleButton(0);
 	}
-	$scope.onMon = function() {
+	$scope.onMon_createReminder = function() {
 		toggleButton(1);
 	}
-	$scope.onTue = function() {
+	$scope.onTue_createReminder = function() {
 		toggleButton(2);
 	}
-	$scope.onWed = function() {
+	$scope.onWed_createReminder = function() {
 		toggleButton(3);
 	}
-	$scope.onTur = function() {
+
+	$scope.onTur_createReminder = function() {
 		toggleButton(4);
 	}
-	$scope.onFri = function() {
+	$scope.onFri_createReminder = function() {
 		toggleButton(5);
 	}
-	$scope.onSat = function() {
+	$scope.onSat_createReminder = function() {
 		toggleButton(6);
+	}
+
+	$scope.onSun_editReminder = function() {
+		toggleButton_editReminder(0);
+	}
+	$scope.onMon_editReminder = function() {
+		toggleButton_editReminder(1);
+	}
+	$scope.onTue_editReminder = function() {
+		toggleButton_editReminder(2);
+	}
+	$scope.onWed_editReminder = function() {
+		toggleButton_editReminder(3);
+	}
+	$scope.onTur_editReminder = function() {
+		toggleButton_editReminder(4);
+	}
+	$scope.onFri_editReminder = function() {
+		toggleButton_editReminder(5);
+	}
+	$scope.onSat_editReminder = function() {
+		toggleButton_editReminder(6);
 	}
 	toggleButton = function(id) {
 		var i = id + 1;
@@ -993,8 +1063,23 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		} else {
 			
 		}
-
 	}
+
+	toggleButton_editReminder = function(id) {
+		var i = id + 1;
+		if (window.edit_reminder_repeat[id] == false) {
+			window.edit_reminder_repeat[id] = true;
+			document.getElementById('repeatdaybutton' + i + '_edit').style.background = 'orange';
+			document.getElementById('repeatdaybutton' + i + '_edit').style.border = 'none';
+		} else if (window.edit_reminder_repeat[id] == true) {
+			window.edit_reminder_repeat[id] = false;
+			document.getElementById('repeatdaybutton' + i + '_edit').style.background = 'white';
+			document.getElementById('repeatdaybutton' + i + '_edit').style.border = '1px solid #000';
+		} else {
+			
+		}
+	}
+
 	$scope.temp = function() {
 		var html = "<label> wahaha </label>";
 		document.getElementById('calendarcalendar').innerHTML=html;
@@ -1111,8 +1196,787 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
            		}
            	}
         }
-    
+     
         reader.readAsDataURL(file);
+    }
+
+    $scope.addReminder = function () {
+		document.getElementById("reminder_add_content").style.visibility = "visible";
+    }
+
+    $scope.reminderCreate = function() {
+    	if (window.remindarCount == 5) {
+			document.getElementById("reminder_add_content").style.visibility = "hidden";
+    		return;
+    	}
+    	alert("reminder created");
+		document.getElementById("reminder_add_content").style.visibility = "hidden";
+		alert(window.createdHour.toString() + window.createdMinute.toString() + window.createdPM.toString());
+		window.remindarCount++;
+		if (window.remindarCount == 1) {
+			document.getElementById("reminder1").style.visibility = "visible";
+			document.getElementById("reminder2").style.visibility = "hidden";
+			document.getElementById("reminder3").style.visibility = "hidden";
+			document.getElementById("reminder4").style.visibility = "hidden";
+			document.getElementById("reminder5").style.visibility = "hidden";
+
+			window.reminderInfo[0][0] = window.createdHour;
+			var hour = window.createdHour.toString();
+			if (window.createdHour < 10) {
+				hour = "0" + hour;
+			}
+
+			window.reminderInfo[0][1] = window.createdMinute;
+			var minute = window.createdMinute.toString();
+			if (window.createdMinute < 10) {
+				minute = "0" + minute;
+			}
+
+			var ampm = "AM";
+			window.reminderInfo[0][2] = window.createdPM;
+			if (window.createdPM == 1) {
+				ampm = "PM";
+			}
+			document.getElementById("firstpage schedule reminder_content1 time").innerHTML = hour + ":" + minute + " " + ampm;
+
+			var week = "";
+			window.reminderInfo[0][3] = 0;
+			if (window.edit_reminder_repeat_sun[0] == true) {
+				window.reminderInfo[0][3] = 1;
+				if (week == "") {
+					week = "Sunday";
+				} else {
+					week += ", Sunday";
+				}
+			}
+
+			window.reminderInfo[0][4] = 0;
+			if (window.edit_reminder_repeat_sun[1] == true) {
+				window.reminderInfo[0][4] = 1;
+				if (week == "") {
+					week = "Monday";
+				} else {
+					week += ", Monday";
+				}
+			}
+
+			window.reminderInfo[0][5] = 0;
+			if (window.edit_reminder_repeat_sun[2] == true) {
+				window.reminderInfo[0][5] = 1;
+				if (week == "") {
+					week = "Tuesday";
+				} else {
+					week += ", Tuesday";
+				}
+			}
+
+			window.reminderInfo[0][6] = 0;
+			if (window.edit_reminder_repeat_sun[3] == true) {
+				window.reminderInfo[0][6] = 1;
+				if (week == "") {
+					week = "Wednesday";
+				} else {
+					week += ", Wednesday";
+				}
+			}
+
+			window.reminderInfo[0][7] = 0;
+			if (window.edit_reminder_repeat_sun[4] == true) {
+				window.reminderInfo[0][7] = 1;
+				if (week == "") {
+					week = "Thursday";
+				} else {
+					week += ", Thursday";
+				}
+			}
+
+			window.reminderInfo[0][8] = 0;
+			if (window.edit_reminder_repeat_sun[5] == true) {
+				window.reminderInfo[0][8] = 1;
+				if (week == "") {
+					week = "Friday";
+				} else {
+					week += ", Friday";
+				}
+			}
+
+			window.reminderInfo[0][9] = 0;
+			if (window.edit_reminder_repeat_sun[6] == true) {
+				window.reminderInfo[0][9] = 1;
+				if (week == "") {
+					week = "Saturday";
+				} else {
+					week += ", Saturday";
+				}
+			}
+
+			document.getElementById("firstpage schedule reminder_content1 weekday").innerHTML = week;
+
+		} else if (window.remindarCount == 2) {
+			document.getElementById("reminder1").style.visibility = "visible";
+			document.getElementById("reminder2").style.visibility = "visible";
+			document.getElementById("reminder3").style.visibility = "hidden";
+			document.getElementById("reminder4").style.visibility = "hidden";
+			document.getElementById("reminder5").style.visibility = "hidden";
+
+
+			window.reminderInfo[1][0] = window.createdHour;
+			var hour = window.createdHour.toString();
+			if (window.createdHour < 10) {
+				hour = "0" + hour;
+			}
+
+			window.reminderInfo[1][1] = window.createdMinute;
+			var minute = window.createdMinute.toString();
+			if (window.createdMinute < 10) {
+				minute = "0" + minute;
+			}
+
+			var ampm = "AM";
+			window.reminderInfo[1][2] = window.createdPM;
+			if (window.createdPM == 1) {
+				ampm = "PM";
+			}
+
+			var week = "";
+			window.reminderInfo[1][3] = 0;
+			if (window.edit_reminder_repeat_sun[0] == true) {
+				window.reminderInfo[1][3] = 1;
+				week += "Sunday";
+			}
+
+			window.reminderInfo[1][4] = 0;
+			if (window.edit_reminder_repeat_sun[1] == true) {
+				week += "Monday";
+				window.reminderInfo[1][4] = 1;
+				if (week == "") {
+					week = "Monday";
+				} else {
+					week += ", Monday";
+				}
+			}
+
+			window.reminderInfo[1][5] = 0;
+			if (window.edit_reminder_repeat_sun[2] == true) {
+				window.reminderInfo[1][5] = 1;
+				if (week == "") {
+					week = "Tuesday";
+				} else {
+					week += ", Tuesday";
+				}
+			}
+
+			window.reminderInfo[1][6] = 0;
+			if (window.edit_reminder_repeat_sun[3] == true) {
+				window.reminderInfo[1][6] = 1;
+				if (week == "") {
+					week = "Wednesday";
+				} else {
+					week += ", Wednesday";
+				}
+			}
+
+			window.reminderInfo[1][7] = 0;
+			if (window.edit_reminder_repeat_sun[4] == true) {
+				window.reminderInfo[1][7] = 1;
+				if (week == "") {
+					week = "Thursday";
+				} else {
+					week += ", Thursday";
+				}
+			}
+
+			window.reminderInfo[1][8] = 0;
+			if (window.edit_reminder_repeat_sun[5] == true) {
+				window.reminderInfo[1][8] = 1;
+				if (week == "") {
+					week = "Friday";
+				} else {
+					week += ", Friday";
+				}
+			}
+
+			window.reminderInfo[1][9] = 0;
+			if (window.edit_reminder_repeat_sun[6] == true) {
+				window.reminderInfo[1][9] = 1;
+				if (week == "") {
+					week = "Saturday";
+				} else {
+					week += ", Saturday";
+				}
+			}
+
+			document.getElementById("firstpage schedule reminder_content2 time").innerHTML = hour + ":" + minute + " " + ampm;
+			document.getElementById("firstpage schedule reminder_content2 weekday").innerHTML = week;
+			
+		} else if (window.remindarCount == 3) {
+			document.getElementById("reminder1").style.visibility = "visible";
+			document.getElementById("reminder2").style.visibility = "visible";
+			document.getElementById("reminder3").style.visibility = "visible";
+			document.getElementById("reminder4").style.visibility = "hidden";
+			document.getElementById("reminder5").style.visibility = "hidden";
+
+
+			window.reminderInfo[2][0] = window.createdHour;
+			var hour = window.createdHour.toString();
+			if (window.createdHour < 10) {
+				hour = "0" + hour;
+			}
+
+			window.reminderInfo[2][1] = window.createdMinute;
+			var minute = window.createdMinute.toString();
+			if (window.createdMinute < 10) {
+				minute = "0" + minute;
+			}
+
+			var ampm = "AM";
+			window.reminderInfo[2][2] = window.createdPM;
+			if (window.createdPM == 1) {
+				ampm = "PM";
+			}
+			document.getElementById("firstpage schedule reminder_content3 time").innerHTML = hour + ":" + minute + " " + ampm;
+
+			var week = "";
+			window.reminderInfo[2][3] = 0;
+			if (window.edit_reminder_repeat_sun[0] == true) {
+				window.reminderInfo[2][3] = 1;
+				week += "Sunday";
+			}
+
+			window.reminderInfo[2][4] = 0;
+			if (window.edit_reminder_repeat_sun[1] == true) {
+				week += "Monday";
+				window.reminderInfo[2][4] = 1;
+				if (week == "") {
+					week = "Monday";
+				} else {
+					week += ", Monday";
+				}
+			}
+
+			window.reminderInfo[2][5] = 0;
+			if (window.edit_reminder_repeat_sun[2] == true) {
+				window.reminderInfo[2][5] = 1;
+				if (week == "") {
+					week = "Tuesday";
+				} else {
+					week += ", Tuesday";
+				}
+			}
+
+			window.reminderInfo[2][6] = 0;
+			if (window.edit_reminder_repeat_sun[3] == true) {
+				window.reminderInfo[2][6] = 1;
+				if (week == "") {
+					week = "Wednesday";
+				} else {
+					week += ", Wednesday";
+				}
+			}
+
+			window.reminderInfo[2][7] = 0;
+			if (window.edit_reminder_repeat_sun[4] == true) {
+				window.reminderInfo[2][7] = 1;
+				if (week == "") {
+					week = "Thursday";
+				} else {
+					week += ", Thursday";
+				}
+			}
+
+			window.reminderInfo[2][8] = 0;
+			if (window.edit_reminder_repeat_sun[5] == true) {
+				window.reminderInfo[2][8] = 1;
+				if (week == "") {
+					week = "Friday";
+				} else {
+					week += ", Friday";
+				}
+			}
+
+			window.reminderInfo[2][9] = 0;
+			if (window.edit_reminder_repeat_sun[6] == true) {
+				window.reminderInfo[2][9] = 1;
+				if (week == "") {
+					week = "Saturday";
+				} else {
+					week += ", Saturday";
+				}
+			}
+
+			document.getElementById("firstpage schedule reminder_content3 weekday").innerHTML = week;
+			
+		} else if (window.remindarCount == 4) {
+			document.getElementById("reminder1").style.visibility = "visible";
+			document.getElementById("reminder2").style.visibility = "visible";
+			document.getElementById("reminder3").style.visibility = "visible";
+			document.getElementById("reminder4").style.visibility = "visible";
+			document.getElementById("reminder5").style.visibility = "hidden";
+
+			window.reminderInfo[3][0] = window.createdHour;
+			var hour = window.createdHour.toString();
+			if (window.createdHour < 10) {
+				hour = "0" + hour;
+			}
+
+			window.reminderInfo[3][1] = window.createdMinute;
+			var minute = window.createdMinute.toString();
+			if (window.createdMinute < 10) {
+				minute = "0" + minute;
+			}
+
+			var ampm = "AM";
+			window.reminderInfo[3][2] = window.createdPM;
+			if (window.createdPM == 1) {
+				ampm = "PM";
+			}
+			document.getElementById("firstpage schedule reminder_content4 time").innerHTML = hour + ":" + minute + " " + ampm;
+
+			var week = "";
+			window.reminderInfo[3][3] = 0;
+			if (window.edit_reminder_repeat_sun[0] == true) {
+				window.reminderInfo[3][3] = 1;
+				week += "Sunday";
+			}
+
+			window.reminderInfo[3][4] = 0;
+			if (window.edit_reminder_repeat_sun[1] == true) {
+				week += "Monday";
+				window.reminderInfo[3][4] = 1;
+				if (week == "") {
+					week = "Monday";
+				} else {
+					week += ", Monday";
+				}
+			}
+
+			window.reminderInfo[3][5] = 0;
+			if (window.edit_reminder_repeat_sun[2] == true) {
+				window.reminderInfo[3][5] = 1;
+				if (week == "") {
+					week = "Tuesday";
+				} else {
+					week += ", Tuesday";
+				}
+			}
+
+			window.reminderInfo[3][6] = 0;
+			if (window.edit_reminder_repeat_sun[3] == true) {
+				window.reminderInfo[3][6] = 1;
+				if (week == "") {
+					week = "Wednesday";
+				} else {
+					week += ", Wednesday";
+				}
+			}
+
+			window.reminderInfo[3][7] = 0;
+			if (window.edit_reminder_repeat_sun[4] == true) {
+				window.reminderInfo[3][7] = 1;
+				if (week == "") {
+					week = "Thursday";
+				} else {
+					week += ", Thursday";
+				}
+			}
+
+			window.reminderInfo[3][8] = 0;
+			if (window.edit_reminder_repeat_sun[5] == true) {
+				window.reminderInfo[3][8] = 1;
+				if (week == "") {
+					week = "Friday";
+				} else {
+					week += ", Friday";
+				}
+			}
+
+			window.reminderInfo[3][9] = 0;
+			if (window.edit_reminder_repeat_sun[6] == true) {
+				window.reminderInfo[3][9] = 1;
+				if (week == "") {
+					week = "Saturday";
+				} else {
+					week += ", Saturday";
+				}
+			}
+
+			document.getElementById("firstpage schedule reminder_content4 weekday").innerHTML = week;
+			
+		} else if (window.remindarCount == 5) {
+			document.getElementById("reminder1").style.visibility = "visible";
+			document.getElementById("reminder2").style.visibility = "visible";
+			document.getElementById("reminder3").style.visibility = "visible";
+			document.getElementById("reminder4").style.visibility = "visible";
+			document.getElementById("reminder5").style.visibility = "visible";
+
+			window.reminderInfo[4][0] = window.createdHour;
+			var hour = window.createdHour.toString();
+			if (window.createdHour < 10) {
+				hour = "0" + hour;
+			}
+
+			window.reminderInfo[4][1] = window.createdMinute;
+			var minute = window.createdMinute.toString();
+			if (window.createdMinute < 10) {
+				minute = "0" + minute;
+			}
+
+			var ampm = "AM";
+			window.reminderInfo[4][2] = window.createdPM;
+			if (window.createdPM == 1) {
+				ampm = "PM";
+			}
+			document.getElementById("firstpage schedule reminder_content5 time").innerHTML = hour + ":" + minute + " " + ampm;
+
+			var week = "";
+			window.reminderInfo[4][3] = 0;
+			if (window.edit_reminder_repeat_sun[0] == true) {
+				window.reminderInfo[4][3] = 1;
+				week += "Sunday";
+			}
+
+			window.reminderInfo[4][4] = 0;
+			if (window.edit_reminder_repeat_sun[1] == true) {
+				week += "Monday";
+				window.reminderInfo[4][4] = 1;
+				if (week == "") {
+					week = "Monday";
+				} else {
+					week += ", Monday";
+				}
+			}
+
+			window.reminderInfo[4][5] = 0;
+			if (window.edit_reminder_repeat_sun[2] == true) {
+				window.reminderInfo[4][5] = 1;
+				if (week == "") {
+					week = "Tuesday";
+				} else {
+					week += ", Tuesday";
+				}
+			}
+
+			window.reminderInfo[4][6] = 0;
+			if (window.edit_reminder_repeat_sun[3] == true) {
+				window.reminderInfo[4][6] = 1;
+				if (week == "") {
+					week = "Wednesday";
+				} else {
+					week += ", Wednesday";
+				}
+			}
+
+			window.reminderInfo[4][7] = 0;
+			if (window.edit_reminder_repeat_sun[4] == true) {
+				window.reminderInfo[4][7] = 1;
+				if (week == "") {
+					week = "Thursday";
+				} else {
+					week += ", Thursday";
+				}
+			}
+
+			window.reminderInfo[4][8] = 0;
+			if (window.edit_reminder_repeat_sun[5] == true) {
+				window.reminderInfo[4][8] = 1;
+				if (week == "") {
+					week = "Friday";
+				} else {
+					week += ", Friday";
+				}
+			}
+
+			window.reminderInfo[4][9] = 0;
+			if (window.edit_reminder_repeat_sun[6] == true) {
+				window.reminderInfo[4][9] = 1;
+				if (week == "") {
+					week = "Saturday";
+				} else {
+					week += ", Saturday";
+				}
+			}
+
+			document.getElementById("firstpage schedule reminder_content5 weekday").innerHTML = week;
+			
+		}
+    }
+
+    $scope.reminderEdit1 = function() {
+    	alert("reminder1 edit");
+    	document.getElementById('remindar_update_content').style.visibility = "visible";
+    	window.nowEditingReminder = 1;
+    }
+    $scope.reminderDelete1 = function() {
+    	alert("reminder1 delete");
+    	for (var i = 0; i < 10; i++) {
+	    	window.reminderInfo[0][i] = window.reminderInfo[1][i];
+	    	window.reminderInfo[1][i] = window.reminderInfo[2][i];
+	    	window.reminderInfo[2][i] = window.reminderInfo[3][i];
+	    	window.reminderInfo[3][i] = window.reminderInfo[4][i];
+    	}
+
+    	swipeReminder(0);
+    	swipeReminder(1);
+    	swipeReminder(2);
+    	swipeReminder(3);
+
+    	document.getElementById("reminder" + window.remindarCount).style.visibility = "hidden";
+    	window.remindarCount--;
+    }
+    $scope.reminderEdit2 = function() {
+    	alert("reminder2 edit");
+    	window.nowEditingReminder = 2;
+    }
+    $scope.reminderDelete2 = function() {
+    	alert("reminder2 delete");
+    	for (var i = 0; i < 10; i++) {
+	    	window.reminderInfo[1][i] = window.reminderInfo[2][i];
+	    	window.reminderInfo[2][i] = window.reminderInfo[3][i];
+	    	window.reminderInfo[3][i] = window.reminderInfo[4][i];
+    	}
+
+    	swipeReminder(1);
+    	swipeReminder(2);
+    	swipeReminder(3);
+
+    	document.getElementById("reminder" + window.remindarCount).style.visibility = "hidden";
+    	window.remindarCount--;
+    }
+    $scope.reminderEdit3 = function() {
+    	alert("reminder3 edit");
+    	window.nowEditingReminder = 3;
+    }
+    $scope.reminderDelete3 = function() {
+    	alert("reminder3 delete");
+
+    	for (var i = 0; i < 10; i++) {
+	    	window.reminderInfo[2][i] = window.reminderInfo[3][i];
+	    	window.reminderInfo[3][i] = window.reminderInfo[4][i];
+    	}
+
+    	swipeReminder(2);
+    	swipeReminder(3);
+
+    	document.getElementById("reminder" + window.remindarCount).style.visibility = "hidden";
+    	window.remindarCount--;
+
+    }
+    $scope.reminderEdit4 = function() {
+    	alert("reminder4 edit");
+    	window.nowEditingReminder = 4;
+    }
+    $scope.reminderDelete4 = function() {
+    	alert("reminder4 delete");
+    	document.getElementById("reminder" + window.remindarCount).style.visibility = "hidden";
+
+    	for (var i = 0; i < 10; i++) {
+	    	window.reminderInfo[3][i] = window.reminderInfo[4][i];
+    	}
+
+    	swipeReminder(3);
+
+
+    	window.remindarCount--;
+
+    }
+    $scope.reminderEdit5 = function() {
+    	alert("reminder5 edit");
+    	window.nowEditingReminder = 5;
+    }
+    $scope.reminderDelete5 = function() {
+    	alert("reminder5 delete");
+    	document.getElementById("reminder5").style.visibility = "hidden";
+    	window.remindarCount--;
+    }
+
+
+    $scope.updateReminder = function() {
+    	window.reminderInfo[window.nowEditingReminder - 1][0] = window.createdHour;
+    	window.reminderInfo[window.nowEditingReminder - 1][1] = window.createdMinute;
+    	window.reminderInfo[window.nowEditingReminder - 1][2] = window.createdPM;
+
+    	if (window.edit_reminder_repeat[0] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][3] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][3] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[1] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][4] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][4] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[2] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][5] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][5] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[3] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][6] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][6] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[4] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][7] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][7] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[5] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][8] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][8] = 0;
+    	}
+
+    	if (window.edit_reminder_repeat[6] == true) {
+    		window.reminderInfo[window.nowEditingReminder - 1][9] = 1;
+    	} else {
+    		window.reminderInfo[window.nowEditingReminder - 1][9] = 0;
+    	}
+
+    	document.getElementById("remindar_update_content").style.visibility = "hidden";
+
+    	var tempText1 = window.reminderInfo[window.nowEditingReminder - 1][0];
+    	if (window.reminderInfo[window.nowEditingReminder - 1][0] < 10) {
+    		tempText1 = "0" + tempText1;
+    	}
+
+    	var tempText2 = window.reminderInfo[window.nowEditingReminder - 1][1];
+    	if (window.reminderInfo[window.nowEditingReminder - 1][1] < 10) {
+    		tempText2 = "0" + tempText2;
+    	}
+
+    	var tempText3 = "AM";
+    	if (window.reminderInfo[window.nowEditingReminder - 1][2] == 1) {
+    		tempText3 = "PM";
+    	}
+
+    	document.getElementById("firstpage schedule reminder_content" + window.nowEditingReminder + " time").innerHTML = tempText1 + ":" + tempText2 + " " + tempText3;
+
+    	var week = "";
+    	if (window.reminderInfo[window.nowEditingReminder - 1][3] == 1) {
+    		if (week == "") {
+    			week = "Sunday";
+    		} else {
+    			week += ", Sunday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][4] == 1) {
+    		if (week == "") {
+    			week = "Monday";
+    		} else {
+    			week += ", Monday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][5] == 1) {
+    		if (week == "") {
+    			week = "Tuesday";
+    		} else {
+    			week += ", Tuesday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][6] == 1) {
+    		if (week == "") {
+    			week = "Wednesday";
+    		} else {
+    			week += ", Wednesday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][7] == 1) {
+    		if (week == "") {
+    			week = "Thursday";
+    		} else {
+    			week += ", Thursday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][8] == 1) {
+    		if (week == "") {
+    			week = "Friday";
+    		} else {
+    			week += ", Friday";
+    		}
+    	}
+    	if (window.reminderInfo[window.nowEditingReminder - 1][9] == 1) {
+    		if (week == "") {
+    			week = "Saturday";
+    		} else {
+    			week += ", Saturday";
+    		}
+    	}
+		document.getElementById("firstpage schedule reminder_content" + window.nowEditingReminder + " weekday").innerHTML = week;
+    }
+
+    swipeReminder = function(id) {
+
+		var week = "";
+
+    	if (window.reminderInfo[id][3] == 1) {
+    		if (week == "") {
+    			week = "Sunday";
+    		} else {
+    			week += ", Sunday";
+    		}
+    	}
+    	if (window.reminderInfo[id][4] == 1) {
+    		if (week == "") {
+    			week = "Monday";
+    		} else {
+    			week += ", Monday";
+    		}
+    	}
+    	if (window.reminderInfo[id][5] == 1) {
+    		if (week == "") {
+    			week = "Tuesday";
+    		} else {
+    			week += ", Tuesday";
+    		}
+    	}
+    	if (window.reminderInfo[id][6] == 1) {
+    		if (week == "") {
+    			week = "Wednesday";
+    		} else {
+    			week += ", Wednesday";
+    		}
+    	}
+    	if (window.reminderInfo[id][7] == 1) {
+    		if (week == "") {
+    			week = "Thursday";
+    		} else {
+    			week += ", Thursday";
+    		}
+    	}
+    	if (window.reminderInfo[id][8] == 1) {
+    		if (week == "") {
+    			week = "Friday";
+    		} else {
+    			week += ", Friday";
+    		}
+    	}
+    	if (window.reminderInfo[id][9] == 1) {
+    		if (week == "") {
+    			week = "Saturday";
+    		} else {
+    			week += ", Saturday";
+    		}
+    	}
+
+		document.getElementById("firstpage schedule reminder_content" + (id + 1).toString() + " weekday").innerHTML = week;
+
+		var tempText1 = window.reminderInfo[id][0];
+		if (tempText1 < 10) {
+			tempText1 = "0" + tempText1;
+		}
+		var tempText2 = window.reminderInfo[id][1];
+
+		var tempText3 = "AM";
+		if (window.reminderInfo[id][2] == 1) {
+			tempText3 = "PM";
+		}
+
+		document.getElementById("firstpage schedule reminder_content" + (id + 1).toString() + " time").innerHTML = tempText1 + ":" + tempText2 + " " + tempText3;
     }
 });
 
