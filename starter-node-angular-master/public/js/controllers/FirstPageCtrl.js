@@ -9,9 +9,66 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	//reminderInfo[0][9] : reminder -> saturday true false
 	//nowEditingReminder : 
 
+	//window.today.getFullYear() : today's year
+	//window.today.getMonth() : today's month
+	//window.today.getDate() : today's date
+	//window.currentYear : current displayed year
+	//window.currentMonth : current displayed month
+	//window.currentDate : current displayed date
+
 	//	init variables
 	$scope.DummyText="This is Dummy Page";
 	$scope.firstpage_unum_image_src = $sce.trustAsResourceUrl('img/UNUM.png');
+	
+	//circle for calendar (reminder) image source and hide
+	$scope.calendar_reminderCircle1_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle2_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle3_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle4_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle5_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle6_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle7_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle8_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle9_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle10_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle11_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle12_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle13_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle14_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle15_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle16_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle17_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle18_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle19_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle20_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle21_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle22_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle23_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle24_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle25_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle26_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle27_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle28_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle29_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle30_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle31_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle32_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle33_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle34_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle35_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle36_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle37_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle38_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle39_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle40_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle41_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	$scope.calendar_reminderCircle42_src = $sce.trustAsResourceUrl('img/quickdate.png');
+
+	for (var i = 0; i < 42; i++) {
+		document.getElementById("reminderCircle" + (i+1).toString()).style.visibility = "hidden";
+	}
+
+
 	$scope.lineSrc = $sce.trustAsResourceUrl('img/line.png');
 	document.getElementById('settingView').style.opacity = "0.6";
 	document.getElementById('settingView').style.visibility = "hidden";
@@ -109,6 +166,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 				document.getElementById('reminder' + i).style.visibility = "hidden";
 			}
 		}
+
 	});
 
 	window.dotPos = [
@@ -193,6 +251,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 				document.getElementById('date' + (countofmonth + firstdayofweek + 1 + i).toString()).innerHTML = (i+1).toString();
 				document.getElementById('date' + (countofmonth + firstdayofweek + 1 + i).toString()).style.color = "lightgray";
 			}
+
 		} else { //prev
 			if (window.currentmonth == 0) {
 				window.currentmonth = 11;
@@ -230,31 +289,43 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 			}
 		}
 
-		// var firstdayofweek = getFirstDayOfCurrentPage();
-		// var dayscount = window.unleapmonthdays[window.today.getMonth()];
-		// if (getIfLeapYear(window.today.getFullYear()) == true) {
-		// 	dayscount = window.leapmonthdays[window.today.getMonth()];
-		// }
-
-		// for (var i = 0; i < dayscount; i++) {
-		// 	document.getElementById('date' + (i+1+firstdayofweek).toString()).innerHTML = (i+1).toString();
-		// 	document.getElementById('date' + (i+1+firstdayofweek).toString()).style.color = "black";
-		// }
-
-		// if (firstdayofweek > 0) {
-		// 	for (var k = 0; k < firstdayofweek; k++) {
-		// 		document.getElementById('date' + (k+1).toString()).innerHTML = (getPreviousMonthCount() - firstdayofweek + k + 1).toString();
-		// 		document.getElementById('date' + (k+1).toString()).style.color = "lightgray";
+		//add reminder circles to the calendar
+		// for (var i = 0; i < 5; i++) {
+		// 	if (window.reminderInfo[i][3] == 1) {
+		// 		window.addCircleWeek = 0;
+		// 		addCirclesToCalendar();
+		// 		break;
 		// 	}
 		// }
+		window.addCircleWeek = 1;
+		addCirclesToCalendar();
 
-		// if (dayscount + firstdayofweek != 42) {
-		// 	var forwarddays = 42 - dayscount - firstdayofweek;
-		// 	for (var i = 0; i < forwarddays; i++) {
-		// 		document.getElementById('date' + (dayscount + firstdayofweek + i + 1).toString()).innerHTML = (i+1).toString();
-		// 		document.getElementById('date' + (dayscount + firstdayofweek + i + 1).toString()).style.color = "lightgray";
-		// 	}
-		// }
+	}
+
+	addCirclesToCalendar = function() {
+		for (var i = 0; i < 6; i++) {
+			if (document.getElementById('date' + (window.addCircleWeek + i * 7).toString()).style.color == "black") {
+				if (window.today.getFullYear() < window.currentyear) {
+					document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "visible";
+				} else if (window.today.getFullYear() == window.currentyear) {
+					if (window.today.getMonth() < window.currentmonth) {
+						document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "visible";
+					} else if (window.today.getMonth() == window.currentmonth) {
+						if (window.addCircleWeek + i * 7 > window.today.getDate()) {
+							document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "visible";
+						} else {
+							document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "hidden";
+						}
+					} else {
+						document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "hidden";
+					}
+				} else {
+					document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "hidden";
+				}
+			} else {
+				document.getElementById('reminderCircle' + (window.addCircleWeek + i * 7).toString()).style.visibility = "hidden";
+			}
+		}
 	}
 
 	getFirstDayOfCurrentPage = function() {
@@ -897,18 +968,30 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "hidden";
 		document.getElementById('calendar_content').style.visibility = "hidden";
+
+		for (var i = 1; i < 43; i++) {
+			document.getElementById('reminderCircle' + i).style.visibility = "hidden";
+		}
 	}
 	$scope.onCustomPost = function() {
 		window.schedule_select_id = 1;
 		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "hidden";
+
+		for (var i = 1; i < 43; i++) {
+			document.getElementById('reminderCircle' + i).style.visibility = "hidden";
+		}
 	}
 	$scope.onCalendar = function() {
 		window.schedule_select_id = 2;
 		// document.getElementById('remindar_update_content').style.visibility = "visible";
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "visible";
+
+		window.addCircleWeek = 1;
+		addCirclesToCalendar();
+
 	}
 	$scope.firstpage_underbuttonbar_src = $sce.trustAsResourceUrl('img/settings/bar2.png');
 	$scope.firstpage_underbuttonbar_reminder_src = $sce.trustAsResourceUrl('img/settings/bar1.png');
@@ -1725,6 +1808,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
     }
     $scope.reminderEdit2 = function() {
     	alert("reminder2 edit");
+    	document.getElementById('remindar_update_content').style.visibility = "visible";
     	window.nowEditingReminder = 2;
     }
     $scope.reminderDelete2 = function() {
@@ -1744,6 +1828,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
     }
     $scope.reminderEdit3 = function() {
     	alert("reminder3 edit");
+    	document.getElementById('remindar_update_content').style.visibility = "visible";
     	window.nowEditingReminder = 3;
     }
     $scope.reminderDelete3 = function() {
@@ -1763,6 +1848,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
     }
     $scope.reminderEdit4 = function() {
     	alert("reminder4 edit");
+    	document.getElementById('remindar_update_content').style.visibility = "visible";
     	window.nowEditingReminder = 4;
     }
     $scope.reminderDelete4 = function() {
@@ -1781,6 +1867,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
     }
     $scope.reminderEdit5 = function() {
     	alert("reminder5 edit");
+    	document.getElementById('remindar_update_content').style.visibility = "visible";
     	window.nowEditingReminder = 5;
     }
     $scope.reminderDelete5 = function() {
