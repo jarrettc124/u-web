@@ -15,6 +15,9 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	//window.currentYear : current displayed year
 	//window.currentMonth : current displayed month
 	//window.currentDate : current displayed date
+	//window.imageSource : source for main images
+
+	//window.custompost_selectedid[]
 
 	//	init variables
 	$scope.DummyText="This is Dummy Page";
@@ -111,6 +114,11 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		window.reminderInfo.push([]);
 	}
 
+	window.imageSource = [];
+	for (var i = 0; i < 18; i++) {
+		imageSource.push('img/temp/' + (i + 1).toString() + '.jpeg');
+	}
+
 	window.remindarCount = 0;
 	window.worldReminder = [];
 	window.createdHour = 0;
@@ -128,6 +136,11 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 
 	for (var i = 0; i < 5; i++) {
 		window.worldReminder.push("mon:f tue:f wed:f thr:f fri:f sat:f sun:f h:00 m:00 pm:f");
+	}
+
+	window.custompost_selectedid = [];
+	for (var i = 0; i < 18; i++) {
+		window.custompost_selectedid[0] = 0;
 	}
 
 	//	implement methods
@@ -297,8 +310,19 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		// 		break;
 		// 	}
 		// }
-		window.addCircleWeek = 1;
-		addCirclesToCalendar();
+		// window.addCircleWeek = 1;
+		// addCirclesToCalendar();
+
+		
+		for (var i = 0; i < 5; i++) {
+			for (var j = 3; j < 10; j++) {
+				if (window.reminderInfo[i][j] == 1) {
+					window.addCircleWeek = j - 2;
+					addCirclesToCalendar();
+				}
+			}
+		}
+
 
 	}
 
@@ -914,24 +938,24 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 
 	}
 
-	$scope.firstpage_templateimage1_src = $sce.trustAsResourceUrl('img/temp/1.jpeg');
-	$scope.firstpage_templateimage2_src = $sce.trustAsResourceUrl('img/temp/2.jpeg');
-	$scope.firstpage_templateimage3_src = $sce.trustAsResourceUrl('img/temp/3.jpeg');
-	$scope.firstpage_templateimage4_src = $sce.trustAsResourceUrl('img/temp/4.jpeg');
-	$scope.firstpage_templateimage5_src = $sce.trustAsResourceUrl('img/temp/5.jpeg');
-	$scope.firstpage_templateimage6_src = $sce.trustAsResourceUrl('img/temp/6.jpeg');
-	$scope.firstpage_templateimage7_src = $sce.trustAsResourceUrl('img/temp/7.jpeg');
-	$scope.firstpage_templateimage8_src = $sce.trustAsResourceUrl('img/temp/8.jpeg');
-	$scope.firstpage_templateimage9_src = $sce.trustAsResourceUrl('img/temp/9.jpeg');
-	$scope.firstpage_templateimage10_src = $sce.trustAsResourceUrl('img/temp/10.jpeg');
-	$scope.firstpage_templateimage11_src = $sce.trustAsResourceUrl('img/temp/11.jpeg');
-	$scope.firstpage_templateimage12_src = $sce.trustAsResourceUrl('img/temp/12.jpeg');
-	$scope.firstpage_templateimage13_src = $sce.trustAsResourceUrl('img/temp/13.jpeg');
-	$scope.firstpage_templateimage14_src = $sce.trustAsResourceUrl('img/temp/14.jpeg');
-	$scope.firstpage_templateimage15_src = $sce.trustAsResourceUrl('img/temp/15.jpeg');
-	$scope.firstpage_templateimage16_src = $sce.trustAsResourceUrl('img/temp/16.jpeg');
-	$scope.firstpage_templateimage17_src = $sce.trustAsResourceUrl('img/temp/17.jpeg');
-	$scope.firstpage_templateimage18_src = $sce.trustAsResourceUrl('img/temp/18.jpeg');
+	$scope.firstpage_templateimage1_src = $sce.trustAsResourceUrl(window.imageSource[0]);
+	$scope.firstpage_templateimage2_src = $sce.trustAsResourceUrl(window.imageSource[1]);
+	$scope.firstpage_templateimage3_src = $sce.trustAsResourceUrl(window.imageSource[2]);
+	$scope.firstpage_templateimage4_src = $sce.trustAsResourceUrl(window.imageSource[3]);
+	$scope.firstpage_templateimage5_src = $sce.trustAsResourceUrl(window.imageSource[4]);
+	$scope.firstpage_templateimage6_src = $sce.trustAsResourceUrl(window.imageSource[5]);
+	$scope.firstpage_templateimage7_src = $sce.trustAsResourceUrl(window.imageSource[6]);
+	$scope.firstpage_templateimage8_src = $sce.trustAsResourceUrl(window.imageSource[7]);
+	$scope.firstpage_templateimage9_src = $sce.trustAsResourceUrl(window.imageSource[8]);
+	$scope.firstpage_templateimage10_src = $sce.trustAsResourceUrl(window.imageSource[9]);
+	$scope.firstpage_templateimage11_src = $sce.trustAsResourceUrl(window.imageSource[10]);
+	$scope.firstpage_templateimage12_src = $sce.trustAsResourceUrl(window.imageSource[11]);
+	$scope.firstpage_templateimage13_src = $sce.trustAsResourceUrl(window.imageSource[12]);
+	$scope.firstpage_templateimage14_src = $sce.trustAsResourceUrl(window.imageSource[13]);
+	$scope.firstpage_templateimage15_src = $sce.trustAsResourceUrl(window.imageSource[14]);
+	$scope.firstpage_templateimage16_src = $sce.trustAsResourceUrl(window.imageSource[15]);
+	$scope.firstpage_templateimage17_src = $sce.trustAsResourceUrl(window.imageSource[16]);
+	$scope.firstpage_templateimage18_src = $sce.trustAsResourceUrl(window.imageSource[17]);
 
 	$scope.closeCaption = function() {
 		document.getElementById('captionBackground').style.visibility = "hidden";
@@ -982,6 +1006,25 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		for (var i = 1; i < 43; i++) {
 			document.getElementById('reminderCircle' + i).style.visibility = "hidden";
 		}
+
+		$scope.custompost_contentimage1_src = $sce.trustAsResourceUrl(window.imageSource[0]);
+		$scope.custompost_contentimage2_src = $sce.trustAsResourceUrl(window.imageSource[1]);
+		$scope.custompost_contentimage3_src = $sce.trustAsResourceUrl(window.imageSource[2]);
+		$scope.custompost_contentimage4_src = $sce.trustAsResourceUrl(window.imageSource[3]);
+		$scope.custompost_contentimage5_src = $sce.trustAsResourceUrl(window.imageSource[4]);
+		$scope.custompost_contentimage6_src = $sce.trustAsResourceUrl(window.imageSource[5]);
+		$scope.custompost_contentimage7_src = $sce.trustAsResourceUrl(window.imageSource[6]);
+		$scope.custompost_contentimage8_src = $sce.trustAsResourceUrl(window.imageSource[7]);
+		$scope.custompost_contentimage9_src = $sce.trustAsResourceUrl(window.imageSource[8]);
+		$scope.custompost_contentimage10_src = $sce.trustAsResourceUrl(window.imageSource[9]);
+		$scope.custompost_contentimage11_src = $sce.trustAsResourceUrl(window.imageSource[10]);
+		$scope.custompost_contentimage12_src = $sce.trustAsResourceUrl(window.imageSource[11]);
+		$scope.custompost_contentimage13_src = $sce.trustAsResourceUrl(window.imageSource[12]);
+		$scope.custompost_contentimage14_src = $sce.trustAsResourceUrl(window.imageSource[13]);
+		$scope.custompost_contentimage15_src = $sce.trustAsResourceUrl(window.imageSource[14]);
+		$scope.custompost_contentimage16_src = $sce.trustAsResourceUrl(window.imageSource[15]);
+		$scope.custompost_contentimage17_src = $sce.trustAsResourceUrl(window.imageSource[16]);
+		$scope.custompost_contentimage18_src = $sce.trustAsResourceUrl(window.imageSource[17]);
 	}
 	$scope.onCalendar = function() {
 		window.schedule_select_id = 2;
@@ -989,8 +1032,18 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "visible";
 
-		window.addCircleWeek = 1;
-		addCirclesToCalendar();
+
+		for (var i = 0; i < 5; i++) {
+			for (var j = 3; j < 10; j++) {
+				if (window.reminderInfo[i][j] == 1) {
+					window.addCircleWeek = j - 2;
+					addCirclesToCalendar();
+				}
+			}
+		}
+
+		// window.addCircleWeek = 1;
+		// addCirclesToCalendar();
 
 	}
 	$scope.firstpage_underbuttonbar_src = $sce.trustAsResourceUrl('img/settings/bar2.png');
@@ -1013,7 +1066,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		{ "value": 11, "text": "11" }
 	];
 	$scope.selectedHour = function(value) {
-		alert(value);
 		window.createdHour = value;
 	}
 
@@ -1080,13 +1132,12 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		{ "value": 59, "text": "59" }
 	];
 	$scope.selectedMin = function(value) {
-		alert(value);
 		window.createdMinute = value;
 	}
 
 	$scope.makeAMPMs = [{ "value": 0, "text": "AM" }, { "value": 1, "text": "PM" }];
 	$scope.selectedAMPM = function(value) {
-		alert(value);
+		// alert(value);
 		window.createdPM = value;
 	}
 	$scope.onSun_createReminder = function() {
@@ -1110,6 +1161,34 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	}
 	$scope.onSat_createReminder = function() {
 		toggleButton(6);
+	}
+
+	$scope.onSun_customPost = function() {
+		toggleButton_custompost(0);
+	}
+
+	$scope.onMon_customPost = function() {
+		toggleButton_custompost(1);
+	}
+
+	$scope.onTue_customPost = function() {
+		toggleButton_custompost(2);
+	}
+
+	$scope.onWed_customPost = function() {
+		toggleButton_custompost(3);
+	}
+
+	$scope.onTur_customPost = function() {
+		toggleButton_custompost(4);
+	}
+
+	$scope.onFri_customPost = function() {
+		toggleButton_custompost(5);
+	}
+
+	$scope.onSat_customPost = function() {
+		toggleButton_custompost(6);
 	}
 
 	$scope.onSun_editReminder = function() {
@@ -1161,6 +1240,25 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		} else {
 			
 		}
+	}
+
+	toggleButton_custompost = function(id) {
+		var i = id + 1;
+		if (window.edit_reminder_repeat[id] == false) {
+			window.edit_reminder_repeat[id] = true;
+			document.getElementById('repeatpostbutton' + i).style.background = 'orange';
+			document.getElementById('repeatpostbutton' + i).style.border = 'none';
+		} else if (window.edit_reminder_repeat[id] == true) {
+			window.edit_reminder_repeat[id] = false;
+			document.getElementById('repeatpostbutton' + i).style.background = 'white';
+			document.getElementById('repeatpostbutton' + i).style.border = '1px solid #000';
+		} else {
+			
+		}
+	}
+
+	$scope.custompostSave = function() {
+
 	}
 
 	$scope.temp = function() {
@@ -1266,21 +1364,53 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	}
 
 	$("#the-photo-file-field").change(function() {
-        renderImage(this.files[0]);
+		// renderImage(this.files);
+		readmultifiles(this.files);
     });
 
-    function renderImage(file){
-        var reader = new FileReader();
-        reader.onload = function(event){
-            the_url = event.target.result;
-           	for (var i = 0; i < 18; i++) {
-           		if (window.multiselect[i] == 1) {
-		            $('#grid' + (i+1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+the_url+"' />");
-           		}
-           	}
+	function readmultifiles(files) {
+        var reader = new FileReader();  
+
+        function readFile(index) {
+            if( index >= files.length ) return;
+
+            var file = files[index];
+            reader.onload = function(e) {  
+                // get file content  
+                var bin = e.target.result; 
+
+                // do sth with bin
+                debugger;
+                $('#grid1').html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+bin+"' />");
+                readFile(index+1)
+            }
+            reader.readAsBinaryString(file);
         }
+        readFile(0);
+    }
+
+    function renderImage(file){
+
+    	for (var i = 0; i < 2; i++) {
+	        var reader = new FileReader();
+	        reader.readAsDataURL(file[i]);
+	        reader.onload = function(event) {
+	            var the_url = event.target.result;
+	            window.url = event.target.result;
+	        }
+	        $('#grid' + (i + 1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+window.url+"' />");
+
+	        // reader.onload = function(event){
+
+	        //     the_url = event.target.result;
+	        //    	// for (var i = 0; i < 18; i++) {
+	        //    	// 	if (window.multiselect[i] == 1) {
+			      //       // $('#grid' + (window.tempid+1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+the_url+"' />");
+	        //    	// 	}
+	        //    	// }
+	        // }
+    	}
      
-        reader.readAsDataURL(file);
     }
 
     $scope.addReminder = function () {
@@ -2064,6 +2194,73 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		}
 
 		document.getElementById("firstpage schedule reminder_content" + (id + 1).toString() + " time").innerHTML = tempText1 + ":" + tempText2 + " " + tempText3;
+    }
+
+    $scope.onCustomPostImage1 = function() {
+    	onCustomPostEvent(0);
+    }
+    $scope.onCustomPostImage2 = function() {
+    	onCustomPostEvent(1);
+    }
+    $scope.onCustomPostImage3 = function() {
+    	onCustomPostEvent(2);
+    }
+    $scope.onCustomPostImage4 = function() {
+    	onCustomPostEvent(3);
+    }
+    $scope.onCustomPostImage5 = function() {
+    	onCustomPostEvent(4);
+    }
+    $scope.onCustomPostImage6 = function() {
+    	onCustomPostEvent(5);
+    }
+    $scope.onCustomPostImage7 = function() {
+    	onCustomPostEvent(6);
+    }
+    $scope.onCustomPostImage8 = function() {
+    	onCustomPostEvent(7);
+    }
+    $scope.onCustomPostImage9 = function() {
+    	onCustomPostEvent(8);
+    }
+    $scope.onCustomPostImage10 = function() {
+    	onCustomPostEvent(9);
+    }
+    $scope.onCustomPostImage11 = function() {
+    	onCustomPostEvent(10);
+    }
+    $scope.onCustomPostImage12 = function() {
+    	onCustomPostEvent(11);
+    }
+    $scope.onCustomPostImage13 = function() {
+    	onCustomPostEvent(12);
+    }
+    $scope.onCustomPostImage14 = function() {
+    	onCustomPostEvent(13);
+    }
+    $scope.onCustomPostImage15 = function() {
+    	onCustomPostEvent(14);
+    }
+    $scope.onCustomPostImage16 = function() {
+    	onCustomPostEvent(15);
+    }
+    $scope.onCustomPostImage17 = function() {
+    	onCustomPostEvent(16);
+    }
+    $scope.onCustomPostImage18 = function() {
+    	onCustomPostEvent(17);
+    }
+
+    onCustomPostEvent = function(id) {
+
+    	if (window.custompost_selectedid[id] == 1) {
+    		window.custompost_selectedid[id] = 0;
+			document.getElementById("firstpage schedule custompost image i" + (id + 1).toString()).style = "border: none !important";
+    	} else {
+    		window.custompost_selectedid[id] = 1;
+			document.getElementById("firstpage schedule custompost image i" + (id + 1).toString()).style = "border: thin solid orange";
+    	}
+
     }
 });
 

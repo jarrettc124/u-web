@@ -1439,6 +1439,16 @@
 	border: 1px solid #000;
 }
 
+#repeatpostbutton1 {
+	position: absolute;
+	top: 380px;
+	left: 150px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton2 {
 	position: absolute;
 	top: 250px;
@@ -1452,6 +1462,16 @@
 #repeatdaybutton2_edit {
 	position: absolute;
 	top: 250px;
+	left: 210px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatpostbutton2 {
+	position: absolute;
+	top: 380px;
 	left: 210px;
 	width: 40px;
 	height: 40px;
@@ -1479,6 +1499,16 @@
 	border: 1px solid #000;
 }
 
+#repeatpostbutton3 {
+	position: absolute;
+	top: 380px;
+	left: 270px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton4 {
 	position: absolute;
 	top: 250px;
@@ -1492,6 +1522,16 @@
 #repeatdaybutton4_edit {
 	position: absolute;
 	top: 250px;
+	left: 330px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatpostbutton4 {
+	position: absolute;
+	top: 380px;
 	left: 330px;
 	width: 40px;
 	height: 40px;
@@ -1519,6 +1559,16 @@
 	border: 1px solid #000;
 }
 
+#repeatpostbutton5 {
+	position: absolute;
+	top: 380px;
+	left: 390px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton6 {
 	position: absolute;
 	top: 250px;
@@ -1539,6 +1589,16 @@
 	border: 1px solid #000;
 }
 
+#repeatpostbutton6 {
+	position: absolute;
+	top: 380px;
+	left: 450px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
 #repeatdaybutton7 {
 	position: absolute;
 	top: 250px;
@@ -1552,6 +1612,16 @@
 #repeatdaybutton7_edit {
 	position: absolute;
 	top: 250px;
+	left: 510px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	border: 1px solid #000;
+}
+
+#repeatpostbutton7 {
+	position: absolute;
+	top: 380px;
 	left: 510px;
 	width: 40px;
 	height: 40px;
@@ -2698,6 +2768,284 @@
 	height: 30px;
 	font-size: small;
 }
+
+#custompost_image {
+	position: absolute;
+	top: 100px;
+	left: 80px;
+	width: 542px;
+	height: 122px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+}
+
+#custompost_image_contentimage1 {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage2 {
+	position: absolute;
+	top: 0px;
+	left: 60px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage3 {
+	position: absolute;
+	top: 0px;
+	left: 120px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage4 {
+	position: absolute;
+	top: 0px;
+	left: 180px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage5 {
+	position: absolute;
+	top: 0px;
+	left: 240px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage6 {
+	position: absolute;
+	top: 0px;
+	left: 300px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage7 {
+	position: absolute;
+	top: 0px;
+	left: 360px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage8 {
+	position: absolute;
+	top: 0px;
+	left: 420px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage9 {
+	position: absolute;
+	top: 0px;
+	left: 480px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage10 {
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage11 {
+	position: absolute;
+	top: 60px;
+	left: 60px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage12 {
+	position: absolute;
+	top: 60px;
+	left: 120px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage13 {
+	position: absolute;
+	top: 60px;
+	left: 180px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage14 {
+	position: absolute;
+	top: 60px;
+	left: 240px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage15 {
+	position: absolute;
+	top: 60px;
+	left: 300px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage16 {
+	position: absolute;
+	top: 60px;
+	left: 360px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage17 {
+	position: absolute;
+	top: 60px;
+	left: 420px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_image_contentimage18 {
+	position: absolute;
+	top: 60px;
+	left: 480px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+#custompost_hour_dropdown {
+	position: absolute;
+	top: 270px;
+	left: 150px;
+}
+
+#custompost_minute_dropdown {
+	position: absolute;
+	top: 270px;
+	left: 300px;
+}
+
+#custompost_ampm_dropdown {
+	position: absolute;
+	top: 270px;
+	left: 450px;
+}
+
+#custompost_repeatlabel {
+	position: absolute;
+	top: 330px;
+	left: 150px;
+	width: 200px;
+	height: 30px;
+}
+
+.firstpage.schedule.custom_post.save {
+	position: absolute;
+	top: 440px;
+	left: 570px;
+	width: 80px;
+	height: 30px;
+	border-width: 0;
+	border-style: none;
+	background-color: orange;
+}
+
+.firstpage.schedule.custompost.image {
+	width: 60px;
+	height: 60px;
+}
+
+
+
+
+
+
+
+
+
 
 
 

@@ -181,6 +181,94 @@
 	<!-- Custom Post -->
 	<div id="custompost_content">
 		<img ng-src="{{firstpage_underbuttonbar_custom_src}}" class="firstpage schedule underbuttonbar_custom"/>
+
+		<label class="firstpage schedule reminder_create editreminder_title"> CUSTOM POST </label>
+
+		<div id="custompost_image">
+			<div id="custompost_image_contentimage1" ng-click="onCustomPostImage1()">
+				<img ng-src="{{custompost_contentimage1_src}}" class="firstpage schedule custompost image i1" id="firstpage schedule custompost image i1"/>
+			</div>
+			<div id="custompost_image_contentimage2" ng-click="onCustomPostImage2()">
+				<img ng-src="{{custompost_contentimage2_src}}" class="firstpage schedule custompost image i2" id="firstpage schedule custompost image i2"/>
+			</div>
+			<div id="custompost_image_contentimage3" ng-click="onCustomPostImage3()">
+				<img ng-src="{{custompost_contentimage3_src}}" class="firstpage schedule custompost image i3" id="firstpage schedule custompost image i3"/>
+			</div>
+			<div id="custompost_image_contentimage4" ng-click="onCustomPostImage4()">
+				<img ng-src="{{custompost_contentimage4_src}}" class="firstpage schedule custompost image i4" id="firstpage schedule custompost image i4"/>
+			</div>
+			<div id="custompost_image_contentimage5" ng-click="onCustomPostImage5()">
+				<img ng-src="{{custompost_contentimage5_src}}" class="firstpage schedule custompost image i5" id="firstpage schedule custompost image i5"/>
+			</div>
+			<div id="custompost_image_contentimage6" ng-click="onCustomPostImage6()">
+				<img ng-src="{{custompost_contentimage6_src}}" class="firstpage schedule custompost image i6" id="firstpage schedule custompost image i6"/>
+			</div>
+			<div id="custompost_image_contentimage7" ng-click="onCustomPostImage7()">
+				<img ng-src="{{custompost_contentimage7_src}}" class="firstpage schedule custompost image i7" id="firstpage schedule custompost image i7"/>
+			</div>
+			<div id="custompost_image_contentimage8" ng-click="onCustomPostImage8()">
+				<img ng-src="{{custompost_contentimage8_src}}" class="firstpage schedule custompost image i8" id="firstpage schedule custompost image i8"/>
+			</div>
+			<div id="custompost_image_contentimage9" ng-click="onCustomPostImage9()">
+				<img ng-src="{{custompost_contentimage9_src}}" class="firstpage schedule custompost image i9" id="firstpage schedule custompost image i9"/>
+			</div>
+			<div id="custompost_image_contentimage10" ng-click="onCustomPostImage10()">
+				<img ng-src="{{custompost_contentimage10_src}}" class="firstpage schedule custompost image i10" id="firstpage schedule custompost image i10"/>
+			</div>
+			<div id="custompost_image_contentimage11" ng-click="onCustomPostImage11()">
+				<img ng-src="{{custompost_contentimage11_src}}" class="firstpage schedule custompost image i11" id="firstpage schedule custompost image i11"/>
+			</div>
+			<div id="custompost_image_contentimage12" ng-click="onCustomPostImage12()">
+				<img ng-src="{{custompost_contentimage12_src}}" class="firstpage schedule custompost image i12" id="firstpage schedule custompost image i12"/>
+			</div>
+			<div id="custompost_image_contentimage13" ng-click="onCustomPostImage13()">
+				<img ng-src="{{custompost_contentimage13_src}}" class="firstpage schedule custompost image i13" id="firstpage schedule custompost image i13"/>
+			</div>
+			<div id="custompost_image_contentimage14" ng-click="onCustomPostImage14()">
+				<img ng-src="{{custompost_contentimage14_src}}" class="firstpage schedule custompost image i14" id="firstpage schedule custompost image i14"/>
+			</div>
+			<div id="custompost_image_contentimage15" ng-click="onCustomPostImage15()">
+				<img ng-src="{{custompost_contentimage15_src}}" class="firstpage schedule custompost image i15" id="firstpage schedule custompost image i15"/>
+			</div>
+			<div id="custompost_image_contentimage16" ng-click="onCustomPostImage16()">
+				<img ng-src="{{custompost_contentimage16_src}}" class="firstpage schedule custompost image i16" id="firstpage schedule custompost image i16"/>
+			</div>
+			<div id="custompost_image_contentimage17" ng-click="onCustomPostImage17()">
+				<img ng-src="{{custompost_contentimage17_src}}" class="firstpage schedule custompost image i17" id="firstpage schedule custompost image i17"/>
+			</div>
+			<div id="custompost_image_contentimage18" ng-click="onCustomPostImage18()">
+				<img ng-src="{{custompost_contentimage18_src}}" class="firstpage schedule custompost image i18" id="firstpage schedule custompost image i18"/>
+			</div>
+		</div>
+
+
+		<div class="dropdownHour" id="custompost_hour_dropdown">
+			<select ng-model="makeHour.selected" ng-options="makeHour.value as makeHour.text for makeHour in makeHours" ng-change="selectedHour(makeHour.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+		<div class="dropdownMin" id="custompost_minute_dropdown">
+			<select ng-model="makeMin.selected" ng-options="makeMin.value as makeMin.text for makeMin in makeMins" ng-change="selectedMin(makeMin.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+		<div class="dropdownAMPM" id="custompost_ampm_dropdown">
+			<select ng-model="makeAMPM.selected" ng-options="makeAMPM.value as makeAMPM.text for makeAMPM in makeAMPMs" ng-change="selectedAMPM(makeAMPM.selected)" ng-style="{'width': '100px'}">
+			</select>
+		</div>
+
+
+		<label id="custompost_repeatlabel"> REPEAT </label>
+
+		<button class="firstpage schedule custom_post repeat day1" id="repeatpostbutton1" ng-click="onSun_customPost()"> SUN </button>
+		<button class="firstpage schedule custom_post repeat day2" id="repeatpostbutton2" ng-click="onMon_customPost()"> MON </button>
+		<button class="firstpage schedule custom_post repeat day3" id="repeatpostbutton3" ng-click="onTue_customPost()"> TUE </button>
+		<button class="firstpage schedule custom_post repeat day4" id="repeatpostbutton4" ng-click="onWed_customPost()"> WED </button>
+		<button class="firstpage schedule custom_post repeat day5" id="repeatpostbutton5" ng-click="onTur_customPost()"> THU </button>
+		<button class="firstpage schedule custom_post repeat day6" id="repeatpostbutton6" ng-click="onFri_customPost()"> FRI </button>
+		<button class="firstpage schedule custom_post repeat day7" id="repeatpostbutton7" ng-click="onSat_customPost()"> SAT </button>
+		<button class="firstpage schedule custom_post save" ng-click="custompostSave()"> SAVE </button>
+
 	</div>
 
 	<!-- Calendar -->
@@ -403,7 +491,7 @@
 		<button ng-click="trashYes()" class="firstpage caption trashDialogYes"> Yes </button>
 		<button ng-click="trashNo()" class="firstpage caption trashDialogNo"> No </button>
 	</div>
-	<input type="file" id="the-photo-file-field">
+	<input type="file" id="the-photo-file-field" multiple/>
 </div>
 
 
