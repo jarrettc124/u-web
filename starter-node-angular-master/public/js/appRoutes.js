@@ -21,7 +21,28 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		.when('/firstpage', {
 			templateUrl: 'views/firstpage.html',
-			controller: 'FirstPageController'
+			controller: 'FirstPageController',
+			resolve: {
+	            init: function() {
+
+	              return function($q,$cookies,Multiuser){
+
+	              	var deferred = $q.defer();
+
+	              	Multiuser.refreshUser()
+	              	.then(function(user){
+
+       					deferred.resolve(user);
+	              	},function(error){
+	              		deferred.resolve(reject);
+	              	});
+       				
+      				return deferred.promise;
+
+	              }
+
+	            }
+			}
 		})
 
 		.when('/home', {
@@ -39,14 +60,20 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'InstagramController'
 		})
 
-		.when('/instagram', {
-			templateUrl: 'views/instagram.html',
-			controller: 'InstagramController'
-		})
+		// .when('/instagram', {
+		// 	templateUrl: 'views/instagram.html',
+		// 	controller: 'InstagramController'
+		// })
 
 		.when('/geeks', {
 			templateUrl: 'views/geek.html',
 			controller: 'GeekController'	
+		})
+		.when('/v1/login/instagram/callback/',{
+
+			templateUrl: 'views/instagram.html',
+			controller: 'InstagramController'	
+
 		});
 
 	$locationProvider.html5Mode(true);

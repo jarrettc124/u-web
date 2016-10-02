@@ -1,5 +1,264 @@
-angular.module('FirstPageCtrl', []).controller('FirstPageController', function($scope, $sce, $location) {
-	//code infos
+angular.module('FirstPageCtrl', ['sessionApp','InstagramCtrl','ngCookies']).controller('FirstPageController', function($http,$scope, $sce, $location,init,SessionUser,$q,Multiuser,$cookies,Photo,Endpoint) {
+	
+
+	//Properties
+	var draftId = null;
+	var photos = Array();
+	var emptyCell = $sce.trustAsResourceUrl($location.protocol() + "://" + $location.host() + ":" + $location.port()+'/img/temp/23.jpg');
+
+	window.selectedCells = Array();
+	window.queuedPhotos = Array();
+
+	//Photos
+	function initTiles(){
+		for (var i = 0; i < 18; i++) {
+			photos[i] = {"index":i};
+			$scope["grid"+(i+1)+"_HTML"] = $sce.trustAsHtml("<img src='"+emptyCell+"' class='firstpage templateimage"+(i+1)+"' id='grid"+(i+1)+"_image'/>");
+		
+			var indexString = "onGrid"+(i+1)
+			console.log(indexString);
+			$scope[indexString] = createClickFunction(i);
+
+		}
+	}
+
+	function initDropzone(){
+
+		window.myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+		  url: "/target-url", // Set the url
+		  uploadMultiple: true,
+		  thumbnailWidth: 120,
+		  thumbnailHeight: 120,
+		  parallelUploads: 3,
+		  previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n </div>"
+,
+		  autoQueue: false, // Make sure the files aren't queued until manually added
+		  clickable: ".addbutton" // Define the element that should be used as click trigger to select files.
+		});
+
+
+		// window.myDropzone.on("processingmultiple", function(file) {
+		//   // Hookup the start button
+		//   console.log(file);
+		//   // file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
+		
+		// });
+
+		window.myDropzone.on("addedfile", function(file) {
+
+			file.imageUrl = "/hello";
+
+
+			if(window.myDropzone.getAddedFiles().length == $(".dz-hidden-input").get(0).files.length){
+				console.log("DONE ADDING FILES");
+				uploadMedia(window.myDropzone.getAddedFiles().slice());
+				window.myDropzone.removeAllFiles(false);
+			}
+		});
+
+		function uploadMedia(array){
+
+			var selectedCellsToFill = Array();
+			var unselectedCellsToFill = Array();
+			var freeAndSelectedMap = Array();
+
+			for (var i = 0; i<18;i++){
+				freeAndSelectedMap.push({"selected":false,"free":false});
+			}
+
+			var sortedSelectedIndexes = window.selectedCells.sort(function (a, b) {  return a - b;  });
+			sortedSelectedIndexes.forEach(function(cellIndex){
+				freeAndSelectedMap[cellIndex].selected = true;
+			});
+
+			for (var i = 17; i >= 0; i--){
+				console.log(i);
+				if (cellAtIndexIsFree(i)){
+					freeAndSelectedMap[i].free = true;
+
+					if (freeAndSelectedMap[i].selected){
+						selectedCellsToFill.push(i);
+					}else{
+						unselectedCellsToFill.push(i);
+					}
+
+				}
+			}
+
+			var cellsToFill = selectedCellsToFill.concat(unselectedCellsToFill);
+			var nextCellToFill = 0;
+
+			array.forEach(function(file){
+				var cellIndex = cellsToFill[nextCellToFill];
+
+				setImageAtIndex(file,cellIndex);
+
+				nextCellToFill = nextCellToFill + 1;
+			});
+		}
+
+		function cellAtIndexIsFree(cellIndex){
+
+   			if (cellIndex >= 0){
+   				if (photos[cellIndex]._id){
+   					return false;
+   				}else{
+   					return true;
+   				}
+   			}else{
+   				return false;
+   			}
+    	}
+  
+    	function setImageAtIndex(file,cellIndex){
+    		console.log("setImageAtIndex()");
+    		// console.log(file);
+    		// console.log($(file.previewElement).find('img').attr('src'));
+    		// console.log(file.previewElement);
+
+			file.photoIndex = cellIndex;
+			file.previewElement.id = "grid"+(cellIndex+1)+"_preview";
+			
+
+
+			console.log("dsfasdfasdfas");
+			console.log($("#grid"+(file.photoIndex+1)+"_preview").find($("img"))[0]);
+			
+			$("#grid"+(file.photoIndex+1)).html(file.previewElement);
+			$scope.$apply();
+
+
+    		// var imageElement = $("#grid"+cellIndex+"_preview");
+    		// console.log(image1);
+    		// var imageElementSrc = imageElement[0];
+
+    		// console.log(imageElement);
+
+
+
+			// window.myDropzone.processFile(file);
+
+    		let photo = {};
+    	}
+
+		window.myDropzone.on("success", function(file) {
+	      console.log("success")
+	    });
+
+		window.myDropzone.on("complete", function() {
+	      console.log("complete")
+	    });
+
+		window.myDropzone.on("processing", function(file) {
+			console.log("processing");
+
+			console.log(file.photoIndex);
+
+
+    		// var image1 = document.getElementById(""+fdfds).getElementsByClassName();
+
+
+
+
+			this.options.url = file.imageUrl;
+
+	    });
+	}
+
+
+	initTiles();
+	initDropzone();
+
+
+	init($q,$cookies,Multiuser)
+	.then(function(user){
+
+		$scope["username"] = user.currentUser.username;
+
+		var drafts = user.currentUser.drafts;
+		for (var i = 0; i < drafts.length; i++){
+			var draft = drafts[i];
+			if(draft.isDefault == true){
+				draftId = draft._id;
+			}
+		}
+
+		Photo.list()
+		.then(function(photos){
+
+			loadPhotos(photos)
+
+		},function(error){
+
+		});
+
+	},function(error){
+		//Input error condition
+
+	});
+
+    function getNumFreeSpaces(){
+    	var count = 0
+    	photos.forEach(function(photo){
+    		if (photo._id){
+    			count = count + 1;
+    		}
+    	});
+    	return count;
+    }
+
+
+	function loadPhotos(photoArray){
+		console.log("photosArray:")
+		console.log(photoArray);
+		for (var i = 0; i < photoArray.length; i++) {
+
+			var photo = photoArray[i];
+			var indexString = "grid"+(photo.index+1)+"_HTML";
+			// $scope[indexString] = $sce.trustAsResourceUrl('img/Unum_Black_Gif.gif');
+			console.log(photo.draft+":"+draftId);
+
+			if (photo.draft == draftId){
+				photos[photo.index] = photo;
+				
+				if (photo.imageUrl){
+					console.log("image added");
+					console.log(photo);
+					$scope[indexString] = $sce.trustAsHtml("<img src='"+photo.imageUrl+"' class='firstpage templateimage"+(photo.index+1)+"' id='grid"+(photo.index+1)+"_image'/>");
+				}else if (photo.videoUrl){
+					$scope[indexString] = $sce.trustAsHtml("<div style='overflow:hidden; height:inherit; width:inherit;'><video style='height: auto; width: 100%;' src='"+photo.videoUrl+"' /></div>");
+				}
+
+			}
+		}
+	}
+
+	function reloadData(){
+		console.log(photos)
+		for (var i = 0; i < photos.length; i++) {
+
+			var photo = photos[i];
+
+			if (photo._id){
+
+				var indexString = "grid"+(photo.index+1)+"_HTML";
+				// $scope[indexString] = $sce.trustAsResourceUrl('img/Unum_Black_Gif.gif');
+
+				if (photo.imageUrl && photo.draft == draftId){
+					$scope[indexString] = $sce.trustAsHtml("<img src='"+photo.imageUrl+"' class='firstpage templateimage"+(photo.index+1)+"' id='grid"+(photo.index+1)+"_image'/>");
+				}else if (photo.videoUrl){
+					$scope[indexString] = $sce.trustAsHtml("<div style='overflow:hidden; height:inherit; width:inherit;'><video style='height: auto; width: 100%;' src='"+photo.videoUrl+"' /></div>");
+
+					// var img = renderVideoThumbnail(photo.videoUrl);
+					// $scope[indexString] = img;
+
+				}
+			}else{
+				var indexString = "grid"+(i+1)+"_HTML";
+				$scope[indexString] = $sce.trustAsHtml("<img src='"+emptyCell+"' class='firstpage templateimage"+(i+1)+"' id='grid"+(i+1)+"_image'/>");
+			}
+		}
+	}
 
 	//reminderInfo[0][0] : reminder -> hour
 	//reminderInfo[0][1] : reminder -> minute
@@ -15,62 +274,19 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	//window.currentYear : current displayed year
 	//window.currentMonth : current displayed month
 	//window.currentDate : current displayed date
-	//window.imageSource : source for main images
-
-	//window.custompost_selectedid[]
 
 	//	init variables
 	$scope.DummyText="This is Dummy Page";
 	$scope.firstpage_unum_image_src = $sce.trustAsResourceUrl('img/UNUM.png');
 	
 	//circle for calendar (reminder) image source and hide
-	$scope.calendar_reminderCircle1_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle2_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle3_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle4_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle5_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle6_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle7_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle8_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle9_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle10_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle11_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle12_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle13_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle14_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle15_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle16_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle17_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle18_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle19_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle20_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle21_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle22_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle23_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle24_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle25_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle26_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle27_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle28_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle29_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle30_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle31_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle32_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle33_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle34_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle35_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle36_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle37_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle38_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle39_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle40_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle41_src = $sce.trustAsResourceUrl('img/quickdate.png');
-	$scope.calendar_reminderCircle42_src = $sce.trustAsResourceUrl('img/quickdate.png');
+	for (var i = 0;i<42;i++){
+		$scope["calendar_reminderCircle"+(i+1)+"_src"] = $sce.trustAsResourceUrl('img/quickdate.png');
+	}
 
 	for (var i = 0; i < 42; i++) {
 		document.getElementById("reminderCircle" + (i+1).toString()).style.visibility = "hidden";
 	}
-
 
 	$scope.lineSrc = $sce.trustAsResourceUrl('img/line.png');
 	document.getElementById('settingView').style.opacity = "0.6";
@@ -104,19 +320,12 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	window.currentdate = 0;
 
 	window.caption = [];
-	for (var i = 0; i < 18; i++) {
-		window.caption.push("aaa" + i);
-	}
+
 	window.multiSelectID = [];
 
 	window.reminderInfo = [];
 	for (var i = 0; i < 5; i++) {
 		window.reminderInfo.push([]);
-	}
-
-	window.imageSource = [];
-	for (var i = 0; i < 18; i++) {
-		imageSource.push('img/temp/' + (i + 1).toString() + '.jpeg');
 	}
 
 	window.remindarCount = 0;
@@ -136,11 +345,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 
 	for (var i = 0; i < 5; i++) {
 		window.worldReminder.push("mon:f tue:f wed:f thr:f fri:f sat:f sun:f h:00 m:00 pm:f");
-	}
-
-	window.custompost_selectedid = [];
-	for (var i = 0; i < 18; i++) {
-		window.custompost_selectedid[0] = 0;
 	}
 
 	//	implement methods
@@ -310,19 +514,8 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		// 		break;
 		// 	}
 		// }
-		// window.addCircleWeek = 1;
-		// addCirclesToCalendar();
-
-		
-		for (var i = 0; i < 5; i++) {
-			for (var j = 3; j < 10; j++) {
-				if (window.reminderInfo[i][j] == 1) {
-					window.addCircleWeek = j - 2;
-					addCirclesToCalendar();
-				}
-			}
-		}
-
+		window.addCircleWeek = 1;
+		addCirclesToCalendar();
 
 	}
 
@@ -525,11 +718,11 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		var str = 'grid' + id;
 		if (window.multiselect[id-1] == 1) {
 			document.getElementById(str).style = "border: thin solid orange";
-			window.swapOrder[window.swapOrder.length] = id;
+			window.selectedCells.push(id-1);
 		} else {
 			document.getElementById(str).style = "border: none !important";
-			var index = window.swapOrder.indexOf(id);
-			window.swapOrder.splice(index, 1);
+			var index = window.selectedCells.indexOf(id-1);
+			window.selectedCells.splice(index, 1);
 		}
 	}
 
@@ -544,185 +737,18 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		document.getElementById('prevImage').style.visibility = "visible";
 	}
 
-	$scope.onGrid1 = function() {
-		if (window.multiselect[0] == 0) {
-			window.multiselect[0] = 1;
-		} else if (window.multiselect[0] == 1) {
-			window.multiselect[0] = 0;
-		} else {
+	function createClickFunction(i) {
+	    return function() {
 
-		}
-		setborder(1);
-	}
-	$scope.onGrid2 = function() {
-		if (window.multiselect[1] == 0) {
-			window.multiselect[1] = 1;
-		} else if (window.multiselect[1] == 1) {
-			window.multiselect[1] = 0;
-		} else {
+				if (window.multiselect[i] == 0) {
+					window.multiselect[i] = 1;
+				} else if (window.multiselect[i] == 1) {
+					window.multiselect[i] = 0;
+				} else {
 
-		}
-		setborder(2);
-	}
-	$scope.onGrid3 = function() {
-		if (window.multiselect[2] == 0) {
-			window.multiselect[2] = 1;
-		} else if (window.multiselect[2] == 1) {
-			window.multiselect[2] = 0;
-		} else {
-
-		}
-		setborder(3);
-	}
-	$scope.onGrid4 = function() {
-		if (window.multiselect[3] == 0) {
-			window.multiselect[3] = 1;
-		} else if (window.multiselect[3] == 1) {
-			window.multiselect[3] = 0;
-		} else {
-
-		}
-		setborder(4);
-	}
-	$scope.onGrid5 = function() {
-		if (window.multiselect[4] == 0) {
-			window.multiselect[4] = 1;
-		} else if (window.multiselect[4] == 1) {
-			window.multiselect[4] = 0;
-		} else {
-
-		}
-		setborder(5);
-	}
-	$scope.onGrid6 = function() {
-		if (window.multiselect[5] == 0) {
-			window.multiselect[5] = 1;
-		} else if (window.multiselect[5] == 1) {
-			window.multiselect[5] = 0;
-		} else {
-
-		}
-		setborder(6);
-	}
-	$scope.onGrid7 = function() {
-		if (window.multiselect[6] == 0) {
-			window.multiselect[6] = 1;
-		} else if (window.multiselect[6] == 1) {
-			window.multiselect[6] = 0;
-		} else {
-
-		}
-		setborder(7);
-	}
-	$scope.onGrid8 = function() {
-		if (window.multiselect[7] == 0) {
-			window.multiselect[7] = 1;
-		} else if (window.multiselect[7] == 1) {
-			window.multiselect[7] = 0;
-		} else {
-
-		}
-		setborder(8);
-	}
-	$scope.onGrid9 = function() {
-		if (window.multiselect[8] == 0) {
-			window.multiselect[8] = 1;
-		} else if (window.multiselect[8] == 1) {
-			window.multiselect[8] = 0;
-		} else {
-
-		}
-		setborder(9);
-	}
-	$scope.onGrid10 = function() {
-		if (window.multiselect[9] == 0) {
-			window.multiselect[9] = 1;
-		} else if (window.multiselect[9] == 1) {
-			window.multiselect[9] = 0;
-		} else {
-
-		}
-		setborder(10);
-	}
-	$scope.onGrid11 = function() {
-		if (window.multiselect[10] == 0) {
-			window.multiselect[10] = 1;
-		} else if (window.multiselect[10] == 1) {
-			window.multiselect[10] = 0;
-		} else {
-
-		}
-		setborder(11);
-	}
-	$scope.onGrid12 = function() {
-		if (window.multiselect[11] == 0) {
-			window.multiselect[11] = 1;
-		} else if (window.multiselect[11] == 1) {
-			window.multiselect[11] = 0;
-		} else {
-
-		}
-		setborder(12);
-	}
-	$scope.onGrid13 = function() {
-		if (window.multiselect[12] == 0) {
-			window.multiselect[12] = 1;
-		} else if (window.multiselect[12] == 1) {
-			window.multiselect[12] = 0;
-		} else {
-
-		}
-		setborder(13);
-	}
-	$scope.onGrid14 = function() {
-		if (window.multiselect[13] == 0) {
-			window.multiselect[13] = 1;
-		} else if (window.multiselect[13] == 1) {
-			window.multiselect[13] = 0;
-		} else {
-
-		}
-		setborder(14);
-	}
-	$scope.onGrid15 = function() {
-		if (window.multiselect[14] == 0) {
-			window.multiselect[14] = 1;
-		} else if (window.multiselect[14] == 1) {
-			window.multiselect[14] = 0;
-		} else {
-
-		}
-		setborder(15);
-	}
-	$scope.onGrid16 = function() {
-		if (window.multiselect[15] == 0) {
-			window.multiselect[15] = 1;
-		} else if (window.multiselect[15] == 1) {
-			window.multiselect[15] = 0;
-		} else {
-
-		}
-		setborder(16);
-	}
-	$scope.onGrid17 = function() {
-		if (window.multiselect[16] == 0) {
-			window.multiselect[16] = 1;
-		} else if (window.multiselect[16] == 1) {
-			window.multiselect[16] = 0;
-		} else {
-
-		}
-		setborder(17);
-	}
-	$scope.onGrid18 = function() {
-		if (window.multiselect[17] == 0) {
-			window.multiselect[17] = 1;
-		} else if (window.multiselect[17] == 1) {
-			window.multiselect[17] = 0;
-		} else {
-
-		}
-		setborder(18);
+				}
+				setborder(i+1);
+			}
 	}
 
 	$scope.onGrid1Dbl = function() {
@@ -802,74 +828,95 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	}
 
 	$scope.firstpage_toolbar_add_src = $sce.trustAsResourceUrl('img/toolbar/Add.png');
-	$scope.onToolbarAdd = function() {
-		document.getElementById('the-photo-file-field').click();
-	}
+	// $scope.onToolbarAdd = function() {
+	// 	document.getElementById('the-photo-file-field').click();
+	// }
+
 
 	$scope.firstpage_toolbar_trash_src = $sce.trustAsResourceUrl('img/toolbar/Trash.png');
 	$scope.onToolbarTrash = function() {
 		document.getElementById("trashDialog").style.visibility = "visible";
 		document.getElementById("trashDialogContent").style.visibility = "visible";
 
-		var temp = 0;
-		for (var i = 0; i < 18; i++) {
-			if (window.multiselect[i] == 1) {
-				temp++;
-			}
-		}
-
-		document.getElementById("firstpage caption close_Trash_TopLabel").innerHTML = "Delete " + temp + " Selected Images";
+		document.getElementById("firstpage caption close_Trash_TopLabel").innerHTML = "Delete " + window.selectedCells.length + " Selected Images";
 	}
+
 
 	$scope.firstpage_toolbar_swap_src = $sce.trustAsResourceUrl('img/toolbar/Swap.png');
-	window.swapOrder = [];
 	window.targetPos = [];
 	$scope.onToolbarSwap = function() {
-		nextStep();
-		var count = window.swapOrder.length;
-		if (count > 2) {
-			// for (var i = 0; i < count - 1; i++) {
-			// 	var elem = document.getElementById('grid' + (window.swapOrder[i]).toString());
-			// 	move(elem, window.swapOrder[i+1]);
-			// }
-			// var lastelem = document.getElementById('grid' + (window.swapOrder[count - 1]).toString());
-			// move(lastelem, window.swapOrder[0]);
 
-			for (var i = 0; i < count; i++) {
-				var elem = document.getElementById('grid' + (window.swapOrder[i]).toString());
-				move(elem, window.targetPos[i]);
+		var sortedSelectedIndexes = window.selectedCells.sort(function (a, b) {  return a - b;  });
+		console.log(sortedSelectedIndexes);
+		var shiftedSortedSelectedIndex = rotateIndexes(sortedSelectedIndexes,1);
+		console.log(shiftedSortedSelectedIndex);
+		var shiftedPhotos = shiftedSortedSelectedIndex.map(function(index){
+
+			return photos[index];
+		});
+		// console.log(shiftedPhotos);
+
+		var fromToIndexPaths = Array();
+		var selectedJson = Array();
+
+		console.log(sortedSelectedIndexes);
+
+		for (var i = 0; i<sortedSelectedIndexes.length;i++){
+
+			photos[i] = shiftedPhotos[i];
+
+			photos[i].index = sortedSelectedIndexes[i];
+
+			if (photos[i]._id){
+				selectedJson.push(photos[i]);
 			}
 
-		} else if (count == 2) {
-			var elem1 = document.getElementById('grid' + (window.swapOrder[0]).toString());
-			move(elem1, window.targetPos[0]);
-			var elem2 = document.getElementById('grid' + (window.swapOrder[1]).toString());
-			move(elem2, window.targetPos[1]);
-		} else {
-
+			// var elem = document.getElementById('grid' + (shiftedSortedSelectedIndex[i]+1).toString());
+			// move(elem,shiftedSortedSelectedIndex[i]+1,sortedSelectedIndexes[i]+1);
 		}
+
+		//Save to Backend
+      	var cookie = $cookies.get("auth");
+      	var data = {"arr":selectedJson};
+		$http.post(Endpoint.baseUrl+'/v1/posts/updates/',data,{headers: {
+		'Authorization': 'Basic '+cookie
+		}});
+
+		reloadData();
+
 	}
 
-	nextStep = function() {
-		if (window.targetPos.length == 0) {
-			window.targetPos = window.swapOrder;
+	function rotateIndexes(arrayShift,shift){
+		var array = Array();
+		if (arrayShift.length > 0){
+			array = arrayShift.slice();
+			if (shift > 0){
+				for (var i = 0; i < shift; i++ ){
+					var removedArray = 
+					  array = array.concat(array.splice(0, 1));
+					
+				}
+			}
 		}
-
-		var count = window.targetPos.length;
-		var temp = [];
-		for (var i = 0; i < count - 1; i++) {
-			temp.push(window.targetPos[i + 1]);
-		}
-		temp.push(window.targetPos[0]);
-		window.targetPos = temp;
+		return array;
 	}
 
-	move = function(elem, id) {
-		moveActionX(elem, window.position_x[id - 1] - elem.offsetLeft, elem.offsetLeft, id);
-		moveActionY(elem, window.position_y[id - 1] - elem.offsetTop, elem.offsetTop, id);
+	move = function(elem, beginning ,id) {
+
+		console.log((beginning)+":"+(id));
+
+      var deferred = $q.defer();
+
+		$q.all([moveActionX(elem, window.position_x[id - 1] - elem.offsetLeft, elem.offsetLeft, id),
+		moveActionY(elem, window.position_y[id - 1] - elem.offsetTop, elem.offsetTop, id)])
+		.then(function(){
+        	deferred.resolve();
+		});
+      return deferred.promise;
 	}
 
 	moveActionX = function(elem, deltaX, currentX, i) {
+      var deferred = $q.defer();
 		if (deltaX != 0) {
 			var pos = 0;
 			var id = setInterval(frameX, 10);
@@ -877,15 +924,21 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 				if (Math.abs(pos) >= Math.abs(deltaX)) {
 					elem.style.left = window.position_x[i-1] + 'px';
 					clearInterval(id);
+					elem.style.left = null;
+        			deferred.resolve();
 				} else {
 					pos += deltaX / 50;
 					elem.style.left = currentX + pos + 'px';
 				}
 			}
+		}else{
+			deferred.resolve()
 		}
+      return deferred.promise;
 	}
 
 	moveActionY = function(elem, deltaY, currentY, i) {
+      var deferred = $q.defer();
 		if (deltaY != 0) {
 			var pos = 0;
 			var id = setInterval(frameY, 10);
@@ -893,28 +946,44 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 				if (Math.abs(pos) >= Math.abs(deltaY)) {
 					elem.style.top = window.position_y[i-1] + 'px';
 					clearInterval(id);
+					elem.style.top = null;
+
+        			deferred.resolve();
 				} else {
 					pos += deltaY / 50;
 					elem.style.top = currentY + pos + 'px';
 				}
 			}
+		}else{
+			deferred.resolve()
 		}
+      return deferred.promise;
 	}
 
 	$scope.firstpage_toolbar_caption_src = $sce.trustAsResourceUrl('img/toolbar/Caption.png');
 	$scope.onToolbarCaption = function() {
+
 		document.getElementById('captionBackground').style.visibility = "visible";
 		document.getElementById('captionContent').style.visibility = "visible";
 		$scope.closeCaptionSrc = $sce.trustAsResourceUrl('img/settings/cancel.png');
-		var tempCount = 0;
-		var tempStr = "";
-		for (var i = 0; i < 18; i++) {
-			if (window.multiselect[i] == 1) {
-				tempCount++;
-				tempStr = window.caption[i];
+		// $scope.imageUrl = emptyCell;
+
+		var queue = Array();
+
+		window.selectedCells.forEach(function(cellIndex){
+			var photo = photos[cellIndex];
+			if(photo._id){
+				queue.push(photos[cellIndex]);
 			}
+		});
+
+		$scope.captionPhotos = queue;
+
+		if (queue.length>0){
+			$scope.caption = queue[0].message;
 		}
 
+		/*
 		if (tempCount == 1) {
 			var str = tempStr;
 			$scope.captionImageSrc = $sce.trustAsResourceUrl('img/temp/' + window.selectedImageId + '.jpeg');
@@ -926,66 +995,35 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 			$scope.captionImageSrc = $sce.trustAsResourceUrl('img/temp/23.jpg');
 			document.getElementById("firstpage caption comment").value = "";
 		}
+		*/
 	}
 
 	$scope.firstpage_toolbar_schedule_src = $sce.trustAsResourceUrl('img/toolbar/Schedule.png');
-	$scope.onToolbarSchedule = function() {
-
+		$scope.onToolbarSchedule = function() {
 	}
 
 	$scope.firstpage_toolbar_analytics_src = $sce.trustAsResourceUrl('img/toolbar/Analytics.png');
 	$scope.onToolbarAnalytics = function() {
 
 	}
-
-	$scope.firstpage_templateimage1_src = $sce.trustAsResourceUrl(window.imageSource[0]);
-	$scope.firstpage_templateimage2_src = $sce.trustAsResourceUrl(window.imageSource[1]);
-	$scope.firstpage_templateimage3_src = $sce.trustAsResourceUrl(window.imageSource[2]);
-	$scope.firstpage_templateimage4_src = $sce.trustAsResourceUrl(window.imageSource[3]);
-	$scope.firstpage_templateimage5_src = $sce.trustAsResourceUrl(window.imageSource[4]);
-	$scope.firstpage_templateimage6_src = $sce.trustAsResourceUrl(window.imageSource[5]);
-	$scope.firstpage_templateimage7_src = $sce.trustAsResourceUrl(window.imageSource[6]);
-	$scope.firstpage_templateimage8_src = $sce.trustAsResourceUrl(window.imageSource[7]);
-	$scope.firstpage_templateimage9_src = $sce.trustAsResourceUrl(window.imageSource[8]);
-	$scope.firstpage_templateimage10_src = $sce.trustAsResourceUrl(window.imageSource[9]);
-	$scope.firstpage_templateimage11_src = $sce.trustAsResourceUrl(window.imageSource[10]);
-	$scope.firstpage_templateimage12_src = $sce.trustAsResourceUrl(window.imageSource[11]);
-	$scope.firstpage_templateimage13_src = $sce.trustAsResourceUrl(window.imageSource[12]);
-	$scope.firstpage_templateimage14_src = $sce.trustAsResourceUrl(window.imageSource[13]);
-	$scope.firstpage_templateimage15_src = $sce.trustAsResourceUrl(window.imageSource[14]);
-	$scope.firstpage_templateimage16_src = $sce.trustAsResourceUrl(window.imageSource[15]);
-	$scope.firstpage_templateimage17_src = $sce.trustAsResourceUrl(window.imageSource[16]);
-	$scope.firstpage_templateimage18_src = $sce.trustAsResourceUrl(window.imageSource[17]);
-
 	$scope.closeCaption = function() {
 		document.getElementById('captionBackground').style.visibility = "hidden";
 		document.getElementById('captionContent').style.visibility = "hidden";
-	}
-	$scope.closeForCaption = function() {
-		document.getElementById('captionBackground').style.visibility = "hidden";
-		document.getElementById('captionContent').style.visibility = "hidden";
-
-		var tempCount = 0;
-		for (var i = 0; i < 18; i++) {
-			if (window.multiselect[i] == 1) {
-				tempCount++;
-			}
-		}
-
-		if (tempCount == 1) {
-			window.caption[window.selectedImageId - 1] = document.getElementById("firstpage caption comment").value;
-		} else if (tempCount > 1) {
-			for (var i = 0; i < 18; i++) {
-				if (window.multiselect[i] == 1) {
-					window.caption[i] = document.getElementById("firstpage caption comment").value;
-				}
-			}
-
-		} else {
-
-		}
+		$scope.captionPhotos = Array();
+		$scope.caption = "";
 
 	}
+	$scope.saveCaption = function() {
+
+		$scope.captionPhotos.forEach(function(photo){
+			photo.message = $scope.caption;
+		});
+
+		Photo.updatePhotos($scope.captionPhotos);
+
+		$scope.closeCaption();
+	}
+
 	$scope.firstpage_schedule_card_title_image_src = $sce.trustAsResourceUrl('img/toolbar/Schedule.png');
 	$scope.onReminder = function() {
 		window.schedule_select_id = 0;
@@ -1006,25 +1044,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		for (var i = 1; i < 43; i++) {
 			document.getElementById('reminderCircle' + i).style.visibility = "hidden";
 		}
-
-		$scope.custompost_contentimage1_src = $sce.trustAsResourceUrl(window.imageSource[0]);
-		$scope.custompost_contentimage2_src = $sce.trustAsResourceUrl(window.imageSource[1]);
-		$scope.custompost_contentimage3_src = $sce.trustAsResourceUrl(window.imageSource[2]);
-		$scope.custompost_contentimage4_src = $sce.trustAsResourceUrl(window.imageSource[3]);
-		$scope.custompost_contentimage5_src = $sce.trustAsResourceUrl(window.imageSource[4]);
-		$scope.custompost_contentimage6_src = $sce.trustAsResourceUrl(window.imageSource[5]);
-		$scope.custompost_contentimage7_src = $sce.trustAsResourceUrl(window.imageSource[6]);
-		$scope.custompost_contentimage8_src = $sce.trustAsResourceUrl(window.imageSource[7]);
-		$scope.custompost_contentimage9_src = $sce.trustAsResourceUrl(window.imageSource[8]);
-		$scope.custompost_contentimage10_src = $sce.trustAsResourceUrl(window.imageSource[9]);
-		$scope.custompost_contentimage11_src = $sce.trustAsResourceUrl(window.imageSource[10]);
-		$scope.custompost_contentimage12_src = $sce.trustAsResourceUrl(window.imageSource[11]);
-		$scope.custompost_contentimage13_src = $sce.trustAsResourceUrl(window.imageSource[12]);
-		$scope.custompost_contentimage14_src = $sce.trustAsResourceUrl(window.imageSource[13]);
-		$scope.custompost_contentimage15_src = $sce.trustAsResourceUrl(window.imageSource[14]);
-		$scope.custompost_contentimage16_src = $sce.trustAsResourceUrl(window.imageSource[15]);
-		$scope.custompost_contentimage17_src = $sce.trustAsResourceUrl(window.imageSource[16]);
-		$scope.custompost_contentimage18_src = $sce.trustAsResourceUrl(window.imageSource[17]);
 	}
 	$scope.onCalendar = function() {
 		window.schedule_select_id = 2;
@@ -1032,18 +1051,8 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		document.getElementById('custompost_content').style.visibility = "visible";
 		document.getElementById('calendar_content').style.visibility = "visible";
 
-
-		for (var i = 0; i < 5; i++) {
-			for (var j = 3; j < 10; j++) {
-				if (window.reminderInfo[i][j] == 1) {
-					window.addCircleWeek = j - 2;
-					addCirclesToCalendar();
-				}
-			}
-		}
-
-		// window.addCircleWeek = 1;
-		// addCirclesToCalendar();
+		window.addCircleWeek = 1;
+		addCirclesToCalendar();
 
 	}
 	$scope.firstpage_underbuttonbar_src = $sce.trustAsResourceUrl('img/settings/bar2.png');
@@ -1066,6 +1075,7 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		{ "value": 11, "text": "11" }
 	];
 	$scope.selectedHour = function(value) {
+		alert(value);
 		window.createdHour = value;
 	}
 
@@ -1132,12 +1142,13 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		{ "value": 59, "text": "59" }
 	];
 	$scope.selectedMin = function(value) {
+		alert(value);
 		window.createdMinute = value;
 	}
 
 	$scope.makeAMPMs = [{ "value": 0, "text": "AM" }, { "value": 1, "text": "PM" }];
 	$scope.selectedAMPM = function(value) {
-		// alert(value);
+		alert(value);
 		window.createdPM = value;
 	}
 	$scope.onSun_createReminder = function() {
@@ -1161,34 +1172,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	}
 	$scope.onSat_createReminder = function() {
 		toggleButton(6);
-	}
-
-	$scope.onSun_customPost = function() {
-		toggleButton_custompost(0);
-	}
-
-	$scope.onMon_customPost = function() {
-		toggleButton_custompost(1);
-	}
-
-	$scope.onTue_customPost = function() {
-		toggleButton_custompost(2);
-	}
-
-	$scope.onWed_customPost = function() {
-		toggleButton_custompost(3);
-	}
-
-	$scope.onTur_customPost = function() {
-		toggleButton_custompost(4);
-	}
-
-	$scope.onFri_customPost = function() {
-		toggleButton_custompost(5);
-	}
-
-	$scope.onSat_customPost = function() {
-		toggleButton_custompost(6);
 	}
 
 	$scope.onSun_editReminder = function() {
@@ -1242,25 +1225,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		}
 	}
 
-	toggleButton_custompost = function(id) {
-		var i = id + 1;
-		if (window.edit_reminder_repeat[id] == false) {
-			window.edit_reminder_repeat[id] = true;
-			document.getElementById('repeatpostbutton' + i).style.background = 'orange';
-			document.getElementById('repeatpostbutton' + i).style.border = 'none';
-		} else if (window.edit_reminder_repeat[id] == true) {
-			window.edit_reminder_repeat[id] = false;
-			document.getElementById('repeatpostbutton' + i).style.background = 'white';
-			document.getElementById('repeatpostbutton' + i).style.border = '1px solid #000';
-		} else {
-			
-		}
-	}
-
-	$scope.custompostSave = function() {
-
-	}
-
 	$scope.temp = function() {
 		var html = "<label> wahaha </label>";
 		document.getElementById('calendarcalendar').innerHTML=html;
@@ -1292,70 +1256,34 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	$scope.closeTrashSrc = $sce.trustAsResourceUrl('img/settings/cancel.png');
 
 	$scope.trashYes = function() {
-		for (var i = 0; i < 18; i++) {
-			if (window.multiselect[i] == 1) {
-				deleteImage(i);
+
+		// for (var i = 0; i < 18; i++) {
+		// 	if (window.multiselect[i] == 1) {
+		// 		deleteImage(i);
+		// 	}
+		// }
+		var deleteArray = Array();
+		console.log(window.selectedCells);
+		var selectedArray = window.selectedCells.slice();
+		selectedArray.forEach(function(cellIndex){
+
+			if (photos[cellIndex]._id){
+				deleteArray.push(photos[cellIndex]);
+				photos[cellIndex] = {"index":cellIndex};
+
+			var indexString = "grid"+(cellIndex+1)+"_HTML";
+			$scope[indexString] = $sce.trustAsHtml("<img src='"+emptyCell+"' class='firstpage templateimage"+(cellIndex+1)+"' id='grid"+(cellIndex+1)+"_image'/>");
+
 			}
-		}
+			var click = createClickFunction(cellIndex);
+			click(cellIndex);
+		});
+
 		document.getElementById("trashDialog").style.visibility = "hidden";
 		document.getElementById("trashDialogContent").style.visibility = "hidden";
-	}
+		console.log(deleteArray);
+		Photo.deletePhotos(deleteArray);
 
-	deleteImage = function(i) {
-		if (i == 0) {
-			$scope.firstpage_templateimage1_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 1) {
-			$scope.firstpage_templateimage2_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 2) {
-			$scope.firstpage_templateimage3_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 3) {
-			$scope.firstpage_templateimage4_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 4) {
-			$scope.firstpage_templateimage5_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 5) {
-			$scope.firstpage_templateimage6_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 6) {
-			$scope.firstpage_templateimage7_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 7) {
-			$scope.firstpage_templateimage8_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 8) {
-			$scope.firstpage_templateimage9_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 9) {
-			$scope.firstpage_templateimage10_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 10) {
-			$scope.firstpage_templateimage11_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 11) {
-			$scope.firstpage_templateimage12_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 12) {
-			$scope.firstpage_templateimage13_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 13) {
-			$scope.firstpage_templateimage14_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 14) {
-			$scope.firstpage_templateimage15_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 15) {
-			$scope.firstpage_templateimage16_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 16) {
-			$scope.firstpage_templateimage17_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
-		if (i == 17) {
-			$scope.firstpage_templateimage18_src = $sce.trustAsResourceUrl('img/temp/23.jpg');
-		}
 	}
 
 	$scope.trashNo = function() {
@@ -1364,53 +1292,22 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 	}
 
 	$("#the-photo-file-field").change(function() {
-		// renderImage(this.files);
-		readmultifiles(this.files);
+		console.log("RENDERING FILE");
+        renderImage(this.files[0]);
     });
 
-	function readmultifiles(files) {
-        var reader = new FileReader();  
-
-        function readFile(index) {
-            if( index >= files.length ) return;
-
-            var file = files[index];
-            reader.onload = function(e) {  
-                // get file content  
-                var bin = e.target.result; 
-
-                // do sth with bin
-                debugger;
-                $('#grid1').html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+bin+"' />");
-                readFile(index+1)
-            }
-            reader.readAsBinaryString(file);
-        }
-        readFile(0);
-    }
-
     function renderImage(file){
-
-    	for (var i = 0; i < 2; i++) {
-	        var reader = new FileReader();
-	        reader.readAsDataURL(file[i]);
-	        reader.onload = function(event) {
-	            var the_url = event.target.result;
-	            window.url = event.target.result;
-	        }
-	        $('#grid' + (i + 1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+window.url+"' />");
-
-	        // reader.onload = function(event){
-
-	        //     the_url = event.target.result;
-	        //    	// for (var i = 0; i < 18; i++) {
-	        //    	// 	if (window.multiselect[i] == 1) {
-			      //       // $('#grid' + (window.tempid+1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+the_url+"' />");
-	        //    	// 	}
-	        //    	// }
-	        // }
-    	}
+        var reader = new FileReader();
+        reader.onload = function(event){
+            the_url = event.target.result;
+           	for (var i = 0; i < 18; i++) {
+           		if (window.multiselect[i] == 1) {
+		            $('#grid' + (i+1).toString()).html("<img style='height: 100%; width: 100%; object-fit: contain' src='"+the_url+"' />");
+           		}
+           	}
+        }
      
+        reader.readAsDataURL(file);
     }
 
     $scope.addReminder = function () {
@@ -2194,73 +2091,6 @@ angular.module('FirstPageCtrl', []).controller('FirstPageController', function($
 		}
 
 		document.getElementById("firstpage schedule reminder_content" + (id + 1).toString() + " time").innerHTML = tempText1 + ":" + tempText2 + " " + tempText3;
-    }
-
-    $scope.onCustomPostImage1 = function() {
-    	onCustomPostEvent(0);
-    }
-    $scope.onCustomPostImage2 = function() {
-    	onCustomPostEvent(1);
-    }
-    $scope.onCustomPostImage3 = function() {
-    	onCustomPostEvent(2);
-    }
-    $scope.onCustomPostImage4 = function() {
-    	onCustomPostEvent(3);
-    }
-    $scope.onCustomPostImage5 = function() {
-    	onCustomPostEvent(4);
-    }
-    $scope.onCustomPostImage6 = function() {
-    	onCustomPostEvent(5);
-    }
-    $scope.onCustomPostImage7 = function() {
-    	onCustomPostEvent(6);
-    }
-    $scope.onCustomPostImage8 = function() {
-    	onCustomPostEvent(7);
-    }
-    $scope.onCustomPostImage9 = function() {
-    	onCustomPostEvent(8);
-    }
-    $scope.onCustomPostImage10 = function() {
-    	onCustomPostEvent(9);
-    }
-    $scope.onCustomPostImage11 = function() {
-    	onCustomPostEvent(10);
-    }
-    $scope.onCustomPostImage12 = function() {
-    	onCustomPostEvent(11);
-    }
-    $scope.onCustomPostImage13 = function() {
-    	onCustomPostEvent(12);
-    }
-    $scope.onCustomPostImage14 = function() {
-    	onCustomPostEvent(13);
-    }
-    $scope.onCustomPostImage15 = function() {
-    	onCustomPostEvent(14);
-    }
-    $scope.onCustomPostImage16 = function() {
-    	onCustomPostEvent(15);
-    }
-    $scope.onCustomPostImage17 = function() {
-    	onCustomPostEvent(16);
-    }
-    $scope.onCustomPostImage18 = function() {
-    	onCustomPostEvent(17);
-    }
-
-    onCustomPostEvent = function(id) {
-
-    	if (window.custompost_selectedid[id] == 1) {
-    		window.custompost_selectedid[id] = 0;
-			document.getElementById("firstpage schedule custompost image i" + (id + 1).toString()).style = "border: none !important";
-    	} else {
-    		window.custompost_selectedid[id] = 1;
-			document.getElementById("firstpage schedule custompost image i" + (id + 1).toString()).style = "border: thin solid orange";
-    	}
-
     }
 });
 

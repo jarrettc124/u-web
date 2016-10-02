@@ -3,65 +3,68 @@
 	<div class="firstpage mainbar" id="mainbar"></div>
  	<img ng-src="{{firstpage_unum_image_src}}" class="firstpage UNUM_Image"/>
  	<img ng-src="{{lineSrc}}" class="firstpage line_Image"/>
- 	<button ng-click="dropDown()" class="firstpage dropdownmenu"> @Drop Down <img ng-src="{{downArrowSrc}}" class="firstpage downarrow_Image"> </button>
+ 	
+ 	<button id="submit-all" ng-bind="username" class="firstpage dropdownmenu"><img ng-src="{{downArrowSrc}}" class="firstpage downarrow_Image"> </button>
  	<button ng-click="support()" class="firstpage supportbutton"> SUPPORT </button>
  	<button ng-click="setting()" class="firstpage settingbutton"> SETTINGS </button>
  	<div class="firstpage gridview"> 
- 		<div class="firstpage grid1" id="grid1" ng-click="onGrid1()" ng-dblclick="onGrid1Dbl()">
+ 		<div class="firstpage grid1" id="grid1" ng-bind-html="grid1_HTML" ng-click="onGrid1()" ng-dblclick="onGrid1Dbl()">
  			<img ng-src="{{firstpage_templateimage1_src}}" class="firstpage templateimage1" id="grid1_image"/>
  		</div>
- 		<div class="firstpage grid2" id="grid2" ng-click="onGrid2()" ng-dblclick="onGrid2Dbl()">
+ 		<div class="firstpage grid2" id="grid2" ng-bind-html="grid2_HTML" ng-click="onGrid2()" ng-dblclick="onGrid2Dbl()">
  			<img ng-src="{{firstpage_templateimage2_src}}" class="firstpage templateimage2" id="grid2_image"/>
  		</div>
- 		<div class="firstpage grid3" id="grid3" ng-click="onGrid3()" ng-dblclick="onGrid3Dbl()">
+ 		<div class="firstpage grid3" id="grid3" ng-bind-html="grid3_HTML" ng-click="onGrid3()" ng-dblclick="onGrid3Dbl()">
  			<img ng-src="{{firstpage_templateimage3_src}}" class="firstpage templateimage3" id="grid3_image"/>
  		</div>
- 		<div class="firstpage grid4" id="grid4" ng-click="onGrid4()" ng-dblclick="onGrid4Dbl()">
+ 		<div class="firstpage grid4" id="grid4" ng-bind-html="grid4_HTML" ng-click="onGrid4()" ng-dblclick="onGrid4Dbl()">
  			<img ng-src="{{firstpage_templateimage4_src}}" class="firstpage templateimage4" id="grid4_image"/>
  		</div>
- 		<div class="firstpage grid5" id="grid5" ng-click="onGrid5()" ng-dblclick="onGrid5Dbl()">
+ 		<div class="firstpage grid5" id="grid5" ng-bind-html="grid5_HTML" ng-click="onGrid5()" ng-dblclick="onGrid5Dbl()">
  			<img ng-src="{{firstpage_templateimage5_src}}" class="firstpage templateimage5" id="grid5_image"/>
  		</div>
- 		<div class="firstpage grid6" id="grid6" ng-click="onGrid6()" ng-dblclick="onGrid6Dbl()">
+ 		<div class="firstpage grid6" id="grid6" ng-bind-html="grid6_HTML" ng-click="onGrid6()" ng-dblclick="onGrid6Dbl()">
  			<img ng-src="{{firstpage_templateimage6_src}}" class="firstpage templateimage6" id="grid6_image"/>
  		</div>
- 		<div class="firstpage grid7" id="grid7" ng-click="onGrid7()" ng-dblclick="onGrid7Dbl()">
+ 		<div class="firstpage grid7" id="grid7" ng-bind-html="grid7_HTML" ng-click="onGrid7()" ng-dblclick="onGrid7Dbl()">
  			<img ng-src="{{firstpage_templateimage7_src}}" class="firstpage templateimage7" id="grid7_image"/>
  		</div>
- 		<div class="firstpage grid8" id="grid8" ng-click="onGrid8()" ng-dblclick="onGrid8Dbl()">
+ 		<div class="firstpage grid8" id="grid8" ng-bind-html="grid8_HTML" ng-click="onGrid8()" ng-dblclick="onGrid8Dbl()">
  			<img ng-src="{{firstpage_templateimage8_src}}" class="firstpage templateimage8" id="grid8_image"/>
  		</div>
- 		<div class="firstpage grid9" id="grid9" ng-click="onGrid9()" ng-dblclick="onGrid9Dbl()">
+ 		<div class="firstpage grid9" id="grid9" ng-bind-html="grid9_HTML" ng-click="onGrid9()" ng-dblclick="onGrid9Dbl()">
  			<img ng-src="{{firstpage_templateimage9_src}}" class="firstpage templateimage9" id="grid9_image"/>
  		</div>
- 		<div class="firstpage grid10" id="grid10" ng-click="onGrid10()" ng-dblclick="onGrid10Dbl()">
+ 		<div class="firstpage grid10" id="grid10" ng-bind-html="grid10_HTML" ng-click="onGrid10()" ng-dblclick="onGrid10Dbl()">
  			<img ng-src="{{firstpage_templateimage10_src}}" class="firstpage templateimage10" id="grid10_image"/>
  		</div>
- 		<div class="firstpage grid11" id="grid11" ng-click="onGrid11()" ng-dblclick="onGrid11Dbl()">
+ 		<div class="firstpage grid11" id="grid11" ng-bind-html="grid11_HTML" ng-click="onGrid11()" ng-dblclick="onGrid11Dbl()">
  			<img ng-src="{{firstpage_templateimage11_src}}" class="firstpage templateimage11" id="grid11_image"/>
  		</div>
- 		<div class="firstpage grid12" id="grid12" ng-click="onGrid12()" ng-dblclick="onGrid12Dbl()">
+ 		<div class="firstpage grid12" id="grid12" ng-bind-html="grid12_HTML" ng-click="onGrid12()" ng-dblclick="onGrid12Dbl()">
  			<img ng-src="{{firstpage_templateimage12_src}}" class="firstpage templateimage12" id="grid12_image"/>
  		</div>
- 		<div class="firstpage grid13" id="grid13" ng-click="onGrid13()" ng-dblclick="onGrid13Dbl()">
+ 		<div class="firstpage grid13" id="grid13" ng-bind-html="grid13_HTML" ng-click="onGrid13()" ng-dblclick="onGrid13Dbl()">
  			<img ng-src="{{firstpage_templateimage13_src}}" class="firstpage templateimage13" id="grid13_image"/>
  		</div>
- 		<div class="firstpage grid14" id="grid14" ng-click="onGrid14()" ng-dblclick="onGrid14Dbl()">
+ 		<div class="firstpage grid14" id="grid14" ng-bind-html="grid14_HTML" ng-click="onGrid14()" ng-dblclick="onGrid14Dbl()">
  			<img ng-src="{{firstpage_templateimage14_src}}" class="firstpage templateimage14" id="grid14_image"/>
  		</div>
- 		<div class="firstpage grid15" id="grid15" ng-click="onGrid15()" ng-dblclick="onGrid15Dbl()">
+ 		<div class="firstpage grid15" id="grid15" ng-bind-html="grid15_HTML" ng-click="onGrid15()" ng-dblclick="onGrid15Dbl()">
  			<img ng-src="{{firstpage_templateimage15_src}}" class="firstpage templateimage15" id="grid15_image"/>
  		</div>
- 		<div class="firstpage grid16" id="grid16" ng-click="onGrid16()" ng-dblclick="onGrid16Dbl()">
+ 		<div class="firstpage grid16" id="grid16" ng-bind-html="grid16_HTML" ng-click="onGrid16()" ng-dblclick="onGrid16Dbl()">
  			<img ng-src="{{firstpage_templateimage16_src}}" class="firstpage templateimage16" id="grid16_image"/>
  		</div>
- 		<div class="firstpage grid17" id="grid17" ng-click="onGrid17()" ng-dblclick="onGrid17Dbl()">
+ 		<div class="firstpage grid17" id="grid17" ng-bind-html="grid17_HTML" ng-click="onGrid17()" ng-dblclick="onGrid17Dbl()">
  			<img ng-src="{{firstpage_templateimage17_src}}" class="firstpage templateimage17" id="grid17_image"/>
  		</div>
- 		<div class="firstpage grid18" id="grid18" ng-click="onGrid18()" ng-dblclick="onGrid18Dbl()">
+ 		<div class="firstpage grid18" id="grid18" ng-bind-html="grid18_HTML" ng-click="onGrid18()" ng-dblclick="onGrid18Dbl()">
  			<img ng-src="{{firstpage_templateimage18_src}}" class="firstpage templateimage18" id="grid18_image"/>
  		</div>
  	</div>
+ 	<canvas id="canvas">
+    </canvas>
  	<img ng-src="{{firstpage_toolbar_rect_src}}" class="firstpage toolbar_rect"/>
 
 
@@ -181,94 +184,6 @@
 	<!-- Custom Post -->
 	<div id="custompost_content">
 		<img ng-src="{{firstpage_underbuttonbar_custom_src}}" class="firstpage schedule underbuttonbar_custom"/>
-
-		<label class="firstpage schedule reminder_create editreminder_title"> CUSTOM POST </label>
-
-		<div id="custompost_image">
-			<div id="custompost_image_contentimage1" ng-click="onCustomPostImage1()">
-				<img ng-src="{{custompost_contentimage1_src}}" class="firstpage schedule custompost image i1" id="firstpage schedule custompost image i1"/>
-			</div>
-			<div id="custompost_image_contentimage2" ng-click="onCustomPostImage2()">
-				<img ng-src="{{custompost_contentimage2_src}}" class="firstpage schedule custompost image i2" id="firstpage schedule custompost image i2"/>
-			</div>
-			<div id="custompost_image_contentimage3" ng-click="onCustomPostImage3()">
-				<img ng-src="{{custompost_contentimage3_src}}" class="firstpage schedule custompost image i3" id="firstpage schedule custompost image i3"/>
-			</div>
-			<div id="custompost_image_contentimage4" ng-click="onCustomPostImage4()">
-				<img ng-src="{{custompost_contentimage4_src}}" class="firstpage schedule custompost image i4" id="firstpage schedule custompost image i4"/>
-			</div>
-			<div id="custompost_image_contentimage5" ng-click="onCustomPostImage5()">
-				<img ng-src="{{custompost_contentimage5_src}}" class="firstpage schedule custompost image i5" id="firstpage schedule custompost image i5"/>
-			</div>
-			<div id="custompost_image_contentimage6" ng-click="onCustomPostImage6()">
-				<img ng-src="{{custompost_contentimage6_src}}" class="firstpage schedule custompost image i6" id="firstpage schedule custompost image i6"/>
-			</div>
-			<div id="custompost_image_contentimage7" ng-click="onCustomPostImage7()">
-				<img ng-src="{{custompost_contentimage7_src}}" class="firstpage schedule custompost image i7" id="firstpage schedule custompost image i7"/>
-			</div>
-			<div id="custompost_image_contentimage8" ng-click="onCustomPostImage8()">
-				<img ng-src="{{custompost_contentimage8_src}}" class="firstpage schedule custompost image i8" id="firstpage schedule custompost image i8"/>
-			</div>
-			<div id="custompost_image_contentimage9" ng-click="onCustomPostImage9()">
-				<img ng-src="{{custompost_contentimage9_src}}" class="firstpage schedule custompost image i9" id="firstpage schedule custompost image i9"/>
-			</div>
-			<div id="custompost_image_contentimage10" ng-click="onCustomPostImage10()">
-				<img ng-src="{{custompost_contentimage10_src}}" class="firstpage schedule custompost image i10" id="firstpage schedule custompost image i10"/>
-			</div>
-			<div id="custompost_image_contentimage11" ng-click="onCustomPostImage11()">
-				<img ng-src="{{custompost_contentimage11_src}}" class="firstpage schedule custompost image i11" id="firstpage schedule custompost image i11"/>
-			</div>
-			<div id="custompost_image_contentimage12" ng-click="onCustomPostImage12()">
-				<img ng-src="{{custompost_contentimage12_src}}" class="firstpage schedule custompost image i12" id="firstpage schedule custompost image i12"/>
-			</div>
-			<div id="custompost_image_contentimage13" ng-click="onCustomPostImage13()">
-				<img ng-src="{{custompost_contentimage13_src}}" class="firstpage schedule custompost image i13" id="firstpage schedule custompost image i13"/>
-			</div>
-			<div id="custompost_image_contentimage14" ng-click="onCustomPostImage14()">
-				<img ng-src="{{custompost_contentimage14_src}}" class="firstpage schedule custompost image i14" id="firstpage schedule custompost image i14"/>
-			</div>
-			<div id="custompost_image_contentimage15" ng-click="onCustomPostImage15()">
-				<img ng-src="{{custompost_contentimage15_src}}" class="firstpage schedule custompost image i15" id="firstpage schedule custompost image i15"/>
-			</div>
-			<div id="custompost_image_contentimage16" ng-click="onCustomPostImage16()">
-				<img ng-src="{{custompost_contentimage16_src}}" class="firstpage schedule custompost image i16" id="firstpage schedule custompost image i16"/>
-			</div>
-			<div id="custompost_image_contentimage17" ng-click="onCustomPostImage17()">
-				<img ng-src="{{custompost_contentimage17_src}}" class="firstpage schedule custompost image i17" id="firstpage schedule custompost image i17"/>
-			</div>
-			<div id="custompost_image_contentimage18" ng-click="onCustomPostImage18()">
-				<img ng-src="{{custompost_contentimage18_src}}" class="firstpage schedule custompost image i18" id="firstpage schedule custompost image i18"/>
-			</div>
-		</div>
-
-
-		<div class="dropdownHour" id="custompost_hour_dropdown">
-			<select ng-model="makeHour.selected" ng-options="makeHour.value as makeHour.text for makeHour in makeHours" ng-change="selectedHour(makeHour.selected)" ng-style="{'width': '100px'}">
-			</select>
-		</div>
-
-		<div class="dropdownMin" id="custompost_minute_dropdown">
-			<select ng-model="makeMin.selected" ng-options="makeMin.value as makeMin.text for makeMin in makeMins" ng-change="selectedMin(makeMin.selected)" ng-style="{'width': '100px'}">
-			</select>
-		</div>
-
-		<div class="dropdownAMPM" id="custompost_ampm_dropdown">
-			<select ng-model="makeAMPM.selected" ng-options="makeAMPM.value as makeAMPM.text for makeAMPM in makeAMPMs" ng-change="selectedAMPM(makeAMPM.selected)" ng-style="{'width': '100px'}">
-			</select>
-		</div>
-
-
-		<label id="custompost_repeatlabel"> REPEAT </label>
-
-		<button class="firstpage schedule custom_post repeat day1" id="repeatpostbutton1" ng-click="onSun_customPost()"> SUN </button>
-		<button class="firstpage schedule custom_post repeat day2" id="repeatpostbutton2" ng-click="onMon_customPost()"> MON </button>
-		<button class="firstpage schedule custom_post repeat day3" id="repeatpostbutton3" ng-click="onTue_customPost()"> TUE </button>
-		<button class="firstpage schedule custom_post repeat day4" id="repeatpostbutton4" ng-click="onWed_customPost()"> WED </button>
-		<button class="firstpage schedule custom_post repeat day5" id="repeatpostbutton5" ng-click="onTur_customPost()"> THU </button>
-		<button class="firstpage schedule custom_post repeat day6" id="repeatpostbutton6" ng-click="onFri_customPost()"> FRI </button>
-		<button class="firstpage schedule custom_post repeat day7" id="repeatpostbutton7" ng-click="onSat_customPost()"> SAT </button>
-		<button class="firstpage schedule custom_post save" ng-click="custompostSave()"> SAVE </button>
-
 	</div>
 
 	<!-- Calendar -->
@@ -399,9 +314,10 @@
 	<img ng-src="{{firstpage_underbuttonbar_src}}" class="firstpage schedule underbuttonbar"/>
 
  	<!-- TOOLBAR -->
- 	<button ng-click="onToolbarAdd()" class="firstpage toolbar addbutton">
+ 	<button class="firstpage toolbar addbutton">
  		<img ng-src="{{firstpage_toolbar_add_src}}" class="firstpage toolbar addimage"/>
  	</button>
+
  	<button ng-click="onToolbarTrash()" class="firstpage toolbar trashbutton">
  		<img ng-src="{{firstpage_toolbar_trash_src}}" class="firstpage toolbar trashimage"/>
  	</button>
@@ -467,16 +383,29 @@
 		<img ng-src="{{nextImageSrc}}" class="firstpage expand next_Image"/>
 	</button>
 
+	<!--  Caption  -->
 	<div id="captionBackground" ng-click="closeCaption()">
 	</div>
 	<div id="captionContent">
+
 		<button ng-click="closeCaption()" class="firstpage caption closebutton">
 			<img ng-src="{{closeCaptionSrc}}" class="firstpage caption close_Image"/>
 		</button>
-		<img ng-src="{{captionImageSrc}}" class="firstpage caption image"/>
+
+<!-- 		<img ng-src="{{captionImageSrc}}" class="firstpage caption image"/>
+ -->
+		<div class="row-fluid">
+		    <div class="col-lg-12 col-md-10 ">
+		        <div class="cover-container">
+		            <div ng-repeat="photo in captionPhotos" class="cover-item" style="background-image: url({{photo.imageUrl}})"></div>
+		            
+		        </div>
+		    </div>
+		</div>
+
 		<label class="firstpage caption titlelabel"> CAPTION </label>
 		<textarea ng-model="caption" class="firstpage caption comment" id="firstpage caption comment"> </textarea>
-		<button class="firstpage caption savebutton" ng-click="closeForCaption()"> SAVE </button>
+		<button class="firstpage caption savebutton" ng-click="saveCaption()"> SAVE </button>
 	</div>
 
 <!--  Trash  -->
@@ -491,7 +420,7 @@
 		<button ng-click="trashYes()" class="firstpage caption trashDialogYes"> Yes </button>
 		<button ng-click="trashNo()" class="firstpage caption trashDialogNo"> No </button>
 	</div>
-	<input type="file" id="the-photo-file-field" multiple/>
+	<input type="file" id="the-photo-file-field">
 </div>
 
 

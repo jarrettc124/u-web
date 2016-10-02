@@ -1,2 +1,1 @@
-var App = angular.module('sampleApp', ['ngRoute', 'appRoutes', 'LogoCtrl','LoginCtrl', 'InstagramCtrl', 'SignupCtrl', 'MainCtrl', 'NerdCtrl', 'GeekCtrl', 'FirstPageCtrl']);
-
+var App = angular.module('sampleApp', ['ngRoute', 'appRoutes','sessionApp','MainCtrl', 'LogoCtrl','LoginCtrl', 'InstagramCtrl', 'SignupCtrl', 'NerdCtrl', 'GeekCtrl', 'FirstPageCtrl']);
